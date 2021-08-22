@@ -157,7 +157,5 @@ You can contact us at discord via:
 
 [stars-url]: https://github.com/JXRIS/Testing/stargazers
 
-[issues-shield]: https://img.shields.io/github/JXRIS/Testing.svg?style=for-the-badge
 
-[issues-url]: https://github.com/JXRIS/Testing/issues
 
