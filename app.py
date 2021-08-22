@@ -6,3 +6,5 @@ print('another test')
 msg = "Hello"
 
 from minecraft.networking.packets import clientbound
+
+print("Test from PyCharm")
