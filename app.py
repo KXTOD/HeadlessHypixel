@@ -1,15 +1,7 @@
-import random
+import os
+from dotenv import load_dotenv
 
-print('Hello world')
-print('How are you')
-print('another test')
-
-# Added a comment
-msg = "Hello"
-
-# this should get printed in discord
-# from minecraft.networking.packets import clientbound
-
-from random import randint
-for i in range(randint(1,10)):
-    print(randint(0,10))
+# Getting creds
+load_dotenv("crd.env")
+USR = os.getenv('USR')
+PSS = os.getenv('PSS')
