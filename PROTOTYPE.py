@@ -8,10 +8,15 @@ from minecraft.networking.connection import Connection
 from minecraft.networking.packets import Packet, clientbound, serverbound
 import json
 from rich import print
+from dotenv import load_dotenv #pip install python-dotenv (if im right)
+import os
 
 
 def main():
-    auth_token = authentication.AuthenticationToken()
+    load_dotenv("crd.env")
+    USR = os.getenv('USR')
+    PSS = os.getenv('PSS')
+    auth_token = authentication.AuthenticationToken(USR, PSS)
     try:
         auth_token.authenticate()
     except YggdrasilError as e:
