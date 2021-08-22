@@ -57,8 +57,7 @@ class ChatMessage:
                     return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating}[/][turquoise2]Mystery Box[/][bright_white]![/]"
 
             class LobbyJoinMessage:
-                def __init__(self, json_string):
-                    json_data = json.loads(json_string)
+                def __init__(self, json_dict):
 
                     self.name = n
                     self.rank = n
@@ -69,12 +68,12 @@ class ChatMessage:
                     self.guild = n
 
                     # Checks and sets rank
-                    if json_data["extra"][0]["text"] == " §b>§c>§a>§r ":
+                    if json_dict["extra"][0]["text"] == " §b>§c>§a>§r ":
                         self.rank = "MVP++"
-                        string = json_data["extra"][1]
+                        string = json_dict["extra"][1]
                     else:
                         self.rank = "MVP+"
-                        string = json_data["extra"][0]
+                        string = json_dict["extra"][0]
 
                     # Sets name
                     startPoint = n
