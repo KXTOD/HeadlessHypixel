@@ -27,7 +27,7 @@ def main():
 
 
     def handle_join_game(join_packet):
-        print('Connected..')
+        print('[bold green] Connected..')
 
     connection.register_packet_listener(handle_join_game, clientbound.play.JoinGamePacket)
 
@@ -38,11 +38,9 @@ def main():
                     "§5": "purple", "§f": "bright_white", "§7": "white", "§8": "bright_black", "§0": "black",
                     "§r": "bright_white", "§l": "bold", "§o": "italic", "§n": "underline", "§m": "strike", "§k": ""}
 
-        matches = ["joined the lobby"]
         try:
 
             if json_data["extra"][0]["text"] == " §b>§c>§a>§r ":
-                rank = "MVP++"
                 string = json_data["extra"][1]['text']
                 clr = []
                 for index, item in enumerate(string):
@@ -72,21 +70,7 @@ def main():
                     print(chatmsg)
                 except Exception as e:
                     print(e)
-            # elif not "joined the lobby" in json_data['extra'][0]['text']:
-            #     try:
-            #         string = json_data['extra'][0]['text']
-            #         for index, item in enumerate(string):
-            #             if item == "]":
-            #                 # Regex that stars 2 positions after ] (index+2) and then gets the whole word until a space appears, .span() gets the indexes
-            #                 regex_index = re.match("([^\s]+)", string[index + 2:]).span()
-            #                 # Pure magic
-            #                 name = string[index + 2:index + 2 + regex_index[1] - 2]
-            #         print(f"{name}: {json_data['extra'][1]['text'][2:]}")
-            #         print(json_data)
-            #     except:
-            #         print(f"[bold green]{json_data}")
             else:
-                rank = "MVP+"
                 string = json_data["extra"][0]['text']
                 clr = []
                 for index, item in enumerate(string):
