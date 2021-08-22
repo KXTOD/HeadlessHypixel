@@ -1,15 +1,18 @@
+from rich import print
+import regex as re
 import json
+
 n = None
 
 rank_colors = {"VIP": "green1", "VIP+": "green1",
-                "MVP": "turquoise2", "MVP+": "turquoise2",
-                "MVP++": "orange1",
-                None: "bright_black", "None": "bright_black", "non": "bright_black"}
+               "MVP": "turquoise2", "MVP+": "turquoise2",
+               "MVP++": "orange1",
+               None: "bright_black", "None": "bright_black", "non": "bright_black"}
 
-color_format = {"§4": "dark_red", "§c": "red", "§6": "orange1", "§e": "bright_yellow", "§2": "dark_green",
-                "§a": "green", "§b": "turquoise2", "§3": "sky_blue3", "§1": "dark_blue", "§9": "blue", "§d": "pink",
-                "§5": "purple", "§f": "bright_white", "§7": "white", "§8": "bright_black", "§0": "black",
-                "§r": "bright_white", "§l": "bold", "§o": "italic", "§n": "underline", "§m": "strike", "§k": ""}
+color_format = {"4": "dark_red", "c": "red", "6": "orange1", "e": "bright_yellow", "2": "dark_green",
+                "a": "green", "b": "turquoise2", "3": "sky_blue3", "1": "dark_blue", "9": "blue", "d": "pink",
+                "5": "purple", "f": "bright_white", "7": "white", "8": "bright_black", "0": "black",
+                "r": "bright_white", "l": "bold", "o": "italic", "n": "underline", "m": "strike", "k": ""}
 
 
 # Main class
@@ -67,7 +70,7 @@ class ChatMessage:
                     startPoint = n
                     for index, item in enumerate(string["text"]):
                         if item == "+":
-                            self.rankColour = string["text"][index-1]
+                            self.rankColour = string["text"][index - 1]
                             break
                         if index == len(string) and self.rankColour is not None:
                             print("ERROR: Could not find + color.")
@@ -127,11 +130,14 @@ class ChatMessage:
                         if index == len(hoverEventText):
                             print("ERROR: Could not find guild.")
 
-                def Print(self):
+                def debugPrint(self):
                     print(f"Name: {self.name}\nUUID: {self.uuid}\nRank: {self.rank}\n"
-                          f"Rank '+' color: {color_format['§' + self.rankColour]}"
+                          f"Rank '+' color: {color_format[self.rankColour]}"
                           f"\nNetwork level: {self.network_level}\nAchievement points: {self.ach_pts}\n"
                           f"Guild: {self.guild}")
 
                 def formatted(self):
-                    pass
+                    if self.rank == "MVP++":
+                        return f"[turquoise2]>[/][red]>[/][green3]>[/] [{rank_colors[self.rank]}][MVP[/][{color_format[self.rankColour]}]++[/][{rank_colors[self.rank]}]] {self.name}[/] [orange1]joined the lobby![/][green3]<[/][red]<[/][turquoise2]<[/]"
+                    else:
+                        return f"[turquoise2][MVP[/][{color_format[self.rankColour]}]+[/][turquoise2]] {self.name}[/] [turquoise2]joined the lobby![/]"

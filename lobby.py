@@ -1,20 +1,21 @@
 from rich import print
 import regex as re
 
-# json = {
-#     'text': '',
-#     'strikethrough': False,
-#     'extra': [
-#         {'text': ' §b>§c>§a>§r ', 'strikethrough': False},
-#         {
-#             'text': '§6[MVP§e++§6] Unitique§f §6joined the lobby!',
-#             'strikethrough': False,
-#             'clickEvent': {'action': 'run_command', 'value': '/viewprofile 795179c3-ba52-4733-b8d6-ed8eef68e586'},
-#             'hoverEvent': {'action': 'show_text', 'value': {'text': "§6[MVP§e++§6] Unitique§f\n§7Hypixel Level: §659\n§7Achievement Points: §e2,775\n§7Guild: §bLoved\n\n§eClick to view §6Unitique§e's profile!", 'strikethrough': False}}
-#         },
-#         {'text': ' §a<§c<§b<', 'strikethrough': False}
-#     ]
-# }
+"""json = {
+     'text': '',
+     'strikethrough': False,
+     'extra': [
+         {'text': ' §b>§c>§a>§r ', 'strikethrough': False},
+         {
+             'text': '§6[MVP§e++§6] Unitique§f §6joined the lobby!',
+             'strikethrough': False,
+             'clickEvent': {'action': 'run_command', 'value': '/viewprofile 795179c3-ba52-4733-b8d6-ed8eef68e586'},
+             'hoverEvent': {'action': 'show_text', 'value': {'text': "§6[MVP§e++§6] Unitique§f\n§7Hypixel Level: §659\n§7Achievement Points: §e2,775\n§7Guild: §bLoved\n\n§eClick to view §6Unitique§e's profile!", 'strikethrough': False}}
+         },
+         {'text': ' §a<§c<§b<', 'strikethrough': False}
+     ]
+}"""
+
 
 json = {
     'text': '',
