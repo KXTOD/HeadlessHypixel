@@ -17,6 +17,7 @@ color_format = {"4": "dark_red", "c": "red", "6": "orange1", "e": "bright_yellow
 correct_color = {"green": "green1", "aqua": "turquoise2", "orange": "orange1",
                  "gray": "bright_black", "red": "bright_red", "dark_green": "dark_green"}
 
+
 # Main class
 class ChatMessage:
     # Server
@@ -29,6 +30,34 @@ class ChatMessage:
                 pass
 
         class Global:
+            class FriendStatus:
+                def __init__(self, json_string):
+                    self.username = n
+                    self.username_color = n
+                    self.patchedcolor = n
+                    self.status = n
+
+                    # Gets username
+                    self.username = json_string['extra'][0]['text']
+
+                    # Gets username color and patches it
+                    self.username_color = json_string['extra'][0]['color']
+
+                    try:
+                        self.patchedcolor = correct_color[self.username_color]
+                    except KeyError:
+                        self.patchedcolor = "bright_white"
+
+                    # Gets status (join/leave)
+                    self.status = json_string['extra'][1]['text']
+
+                def debugPrint(self):
+                    print(
+                        f"Name: {self.username}\nColor: {self.username_color}\nStatus: {self.status}\nCorrect color: {self.patchedcolor}\n")
+
+                def formatted(self):
+                    return f"[green1]Friend > [/][{correct_color[self.username_color]}]{self.username}[/][bright_yellow]{self.status}[/]"
+
             class MysteryBoxes:
                 def __init__(self, json_string):
                     self.username_color = n
@@ -51,7 +80,8 @@ class ChatMessage:
                     self.rating = json_string['extra'][1]['text']
 
                 def debugPrint(self):
-                    print(f"Name: {self.username}\nColor: {self.username_color}\nCorrect color: {self.patchedcolor}\n")
+                    print(
+                        f"Name: {self.username}\nColor: {self.username_color}\nRating: {self.rating}\nCorrect color: {self.patchedcolor}\n")
 
                 def formatted(self):
                     return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating}[/][turquoise2]Mystery Box[/][bright_white]![/]"

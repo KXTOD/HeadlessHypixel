@@ -59,16 +59,6 @@ def main():
                 # Builds chatmsg
                 chatmsg = f"[turquoise2]>[/][red]>[/][green]>[/] [{clr[0]}][MVP[/][{clr[1]}]++[/][{clr[2]}]] {name}[/] [{clr[3]}][/][{clr[4]}]joined the lobby! [/] [green]<[/][red]<[/][turquoise2]<[/]"
                 print(chatmsg)
-            elif json_data['text'] == "Friend > ":
-                try:
-                    username = json_data['extra'][0]['text']
-                    username_color = json_data['extra'][0]['color']
-                    correct_color = {"green": "green1", "aqua": "turquoise2", "orange": "orange1", "gray": "bright_black"}
-                    status = json_data['extra'][1]['text']
-                    chatmsg = f"[green1]Friend > [/][{correct_color[username_color]}]{username}[/][bright_yellow]{status}[/]"
-                    print(chatmsg)
-                except Exception as e:
-                    print(e)
             else:
                 string = json_data["extra"][0]['text']
                 clr = []
