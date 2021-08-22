@@ -5,3 +5,5 @@ from dotenv import load_dotenv
 load_dotenv("crd.env")
 USR = os.getenv('USR')
 PSS = os.getenv('PSS')
+
+print(USR, PSS)
