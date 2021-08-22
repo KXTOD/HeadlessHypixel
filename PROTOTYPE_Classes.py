@@ -40,11 +40,12 @@ def main():
         try:
             msg = ChatMessage.ChatMessage.Hypixel.Global.LobbyJoinMessage(json_data)
             print(msg.formatted())
+            print(f"UUID: {ChatMessage.ChatMessage.Hypixel.Global.LobbyJoinMessage(json_data).uuid}")
         except Exception as e:
-            print('[bold red]------------------ERROR------------------[/]')
+            print('[bold red]----------------ERROR------------------[/]')
             print(json_data)
             print(f"[bold red]Element causing the error: [/]{e}")
-            print('[bold red]------------------ERROR------------------[/]')
+            print('[bold red]----------------ERROR------------------[/]')
 
     connection.register_packet_listener(print_chat, clientbound.play.ChatMessagePacket)
     connection.connect()
