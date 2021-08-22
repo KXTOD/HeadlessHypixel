@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#from rich.console import Console
 import regex as re
 import sys
 from minecraft import authentication
@@ -8,7 +7,7 @@ from minecraft.networking.connection import Connection
 from minecraft.networking.packets import Packet, clientbound, serverbound
 import json
 from rich import print
-from dotenv import load_dotenv #pip install python-dotenv (if im right)
+from dotenv import load_dotenv
 import os
 
 
