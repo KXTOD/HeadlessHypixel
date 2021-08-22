@@ -18,6 +18,7 @@ correct_color = {"green": "green1", "aqua": "turquoise2", "orange": "orange1",
                  "gray": "bright_black", "red": "bright_red", "dark_green": "dark_green"}
 
 
+
 # Main class
 class ChatMessage:
     # Server
@@ -30,6 +31,34 @@ class ChatMessage:
                 pass
 
         class Global:
+            class WatchdogMessage:
+                def __init__(self, json_string):
+                    # Gets message
+                    self.message = json_string['extra'][0]['text']
+
+                    # Gets message color
+                    self.message_color = json_string['extra'][0]['color']
+
+                    # Tries to check if bold key exists
+                    try:
+                        if json_string['extra'][0]['bold']:
+                            self.bold = "bold "
+                    except KeyError:
+                        self.bold = ""
+
+                    # Tries to apply correct color
+                    try:
+                        self.patchedcolor = correct_color[self.message_color]
+                    except KeyError:
+                        self.patchedcolor = "bright_white"
+
+                def formatted(self):
+                    return f"[{self.bold}{self.patchedcolor}]{self.message}"
+
+                def debugPrint(self):
+                    print(
+                        f"Bold: {self.bold}\nMessage: {self.message}\nMessage Color: {self.message_color}\nPatched color: {self.patchedcolor}")
+
             class FriendStatus:
                 def __init__(self, json_string):
                     self.username = n
@@ -53,7 +82,7 @@ class ChatMessage:
 
                 def debugPrint(self):
                     print(
-                        f"Name: {self.username}\nColor: {self.username_color}\nStatus: {self.status}\nCorrect color: {self.patchedcolor}\n")
+                        f"Name: {self.username}\nColor: {self.username_color}\nStatus: {self.status}\nPatched color: {self.patchedcolor}\n")
 
                 def formatted(self):
                     return f"[green1]Friend > [/][{correct_color[self.username_color]}]{self.username}[/][bright_yellow]{self.status}[/]"
@@ -81,7 +110,7 @@ class ChatMessage:
 
                 def debugPrint(self):
                     print(
-                        f"Name: {self.username}\nColor: {self.username_color}\nRating: {self.rating}\nCorrect color: {self.patchedcolor}\n")
+                        f"Name: {self.username}\nColor: {self.username_color}\nRating: {self.rating}\nPatched color: {self.patchedcolor}\n")
 
                 def formatted(self):
                     return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating}[/][turquoise2]Mystery Box[/][bright_white]![/]"
