@@ -1,6 +1,16 @@
 import json
 n = None
 
+rank_colors = {"VIP": "green1", "VIP+": "green1",
+                "MVP": "turquoise2", "MVP+": "turquoise2",
+                "MVP++": "orange1",
+                None: "bright_black", "None": "bright_black", "non": "bright_black"}
+
+color_format = {"§4": "dark_red", "§c": "red", "§6": "orange1", "§e": "bright_yellow", "§2": "dark_green",
+                "§a": "green", "§b": "turquoise2", "§3": "sky_blue3", "§1": "dark_blue", "§9": "blue", "§d": "pink",
+                "§5": "purple", "§f": "bright_white", "§7": "white", "§8": "bright_black", "§0": "black",
+                "§r": "bright_white", "§l": "bold", "§o": "italic", "§n": "underline", "§m": "strike", "§k": ""}
+
 
 # Main class
 class ChatMessage:
@@ -71,7 +81,12 @@ class ChatMessage:
                         elif startPoint is not None:
                             if hoverEventText[index:index + 13] == "§7Achievement":
                                 endPoint = index - 1
-                                self.network_level = hoverEventText[startPoint:endPoint]
+                                try:
+                                    self.network_level = int(hoverEventText[startPoint:endPoint])
+                                except ValueError:
+                                    print("ERROR: ValueError while setting network level.")
+                                except Exception as e:
+                                    print(f"ERROR: Exception: {e}")
                                 break
 
                         if index == len(hoverEventText):
@@ -85,7 +100,12 @@ class ChatMessage:
                         elif startPoint is not None:
                             if hoverEventText[index:index + 8] == "§7Guild:":
                                 endPoint = index - 1
-                                self.ach_pts = hoverEventText[startPoint:endPoint]
+                                try:
+                                    self.ach_pts = int(str(hoverEventText[startPoint:endPoint]).replace(",", ""))
+                                except ValueError:
+                                    print("ERROR: ValueError while setting achievement points.")
+                                except Exception as e:
+                                    print(f"ERROR: Exception: {e}")
                                 break
 
                         if index == len(hoverEventText):
@@ -106,3 +126,12 @@ class ChatMessage:
 
                         if index == len(hoverEventText):
                             print("ERROR: Could not find guild.")
+
+                def Print(self):
+                    print(f"Name: {self.name}\nUUID: {self.uuid}\nRank: {self.rank}\n"
+                          f"Rank '+' color: {color_format['§' + self.rankColour]}"
+                          f"\nNetwork level: {self.network_level}\nAchievement points: {self.ach_pts}\n"
+                          f"Guild: {self.guild}")
+
+                def formatted(self):
+                    pass
