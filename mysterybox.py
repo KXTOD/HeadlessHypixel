@@ -1,3 +1,5 @@
+from rich import print
+
 json_data = {
     'text': 'ChengRang ',
     'bold': False,
@@ -147,6 +149,9 @@ json_data = {
 }
 
 if json_data['extra'][2]['text'] == "Mystery Box" and json_data['extra'][2]['color'] == "aqua":
+    correct_color = {"green": "green1", "aqua": "turquoise2", "orange": "orange1", "gray": "bright_black"}
     username = json_data['text']
     username_color = json_data['color']
-    print(username, username_color)
+    rating = json_data['extra'][1]['text']
+    clr = correct_color[username_color]
+    print(f"[{clr}]{username}[/][bright_yellow]found a {rating}[/][turquoise2]Mystery Box[/][bright_white]![/]")
