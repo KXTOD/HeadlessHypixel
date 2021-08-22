@@ -16,9 +16,9 @@ def main():
     load_dotenv("crd.env")
     USR = os.getenv('USR')
     PSS = os.getenv('PSS')
-    auth_token = authentication.AuthenticationToken(USR, PSS)
+    auth_token = authentication.AuthenticationToken()
     try:
-        auth_token.authenticate()
+        auth_token.authenticate(USR, PSS)
     except YggdrasilError as e:
         print(e)
         sys.exit()
