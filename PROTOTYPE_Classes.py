@@ -43,7 +43,7 @@ def main():
         except Exception as e:
             print('[bold red]------------------ERROR------------------[/]')
             print(json_data)
-            print(e)
+            print(f"[bold red]Element causing the error: [/]{e}")
             print('[bold red]------------------ERROR------------------[/]')
 
     connection.register_packet_listener(print_chat, clientbound.play.ChatMessagePacket)
