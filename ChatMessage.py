@@ -48,7 +48,7 @@ class ChatMessage:
                         string = json_data["extra"][0]
 
                     # Sets name
-                    startPoint = endPoint = n
+                    startPoint = n
                     for index, item in enumerate(string["text"]):
                         if item == "]" and startPoint is None:
                             startPoint = index + 2
@@ -67,7 +67,6 @@ class ChatMessage:
                     self.uuid = string["clickEvent"]["value"][13:]
 
                     # Sets rank color
-                    startPoint = n
                     for index, item in enumerate(string["text"]):
                         if item == "+":
                             self.rankColour = string["text"][index - 1]
@@ -76,7 +75,7 @@ class ChatMessage:
                             print("ERROR: Could not find + color.")
 
                     # Sets network level
-                    startPoint = endPoint = n
+                    startPoint = n
                     hoverEventText = string["hoverEvent"]["value"]["text"]
                     for index, item in enumerate(hoverEventText):
                         if hoverEventText[index:index + 7] == " Level:" and startPoint is None:
@@ -96,7 +95,7 @@ class ChatMessage:
                             print("ERROR: Could not find network level.")
 
                     # Sets achievement points
-                    startPoint = endPoint = n
+                    startPoint = n
                     for index, item in enumerate(hoverEventText):
                         if hoverEventText[index:index + 8] == " Points:" and startPoint is None:
                             startPoint = index + 11
@@ -115,7 +114,7 @@ class ChatMessage:
                             print("ERROR: Could not find achievement points.")
 
                     # Sets guild
-                    startPoint = endPoint = n
+                    startPoint = n
                     for index, item in enumerate(hoverEventText):
                         if hoverEventText[index:index + 6] == "Guild:" and startPoint is None:
                             startPoint = index + 9
@@ -138,6 +137,6 @@ class ChatMessage:
 
                 def formatted(self):
                     if self.rank == "MVP++":
-                        return f"[turquoise2]>[/][red]>[/][green3]>[/] [{rank_colors[self.rank]}][MVP[/][{color_format[self.rankColour]}]++[/][{rank_colors[self.rank]}]] {self.name}[/] [orange1]joined the lobby![/][green3]<[/][red]<[/][turquoise2]<[/]"
+                        return f"[turquoise2]>[/][red]>[/][green3]>[/] [{rank_colors[self.rank]}][MVP[/][{color_format[self.rankColour]}]++[/][{rank_colors[self.rank]}]] {self.name}[/] [orange1]joined the lobby! [/][green3]<[/][red]<[/][turquoise2]<[/]"
                     else:
-                        return f"[turquoise2][MVP[/][{color_format[self.rankColour]}]+[/][turquoise2]] {self.name}[/] [turquoise2]joined the lobby![/]"
+                        return f"[turquoise2][MVP[/][{color_format[self.rankColour]}]+[/][turquoise2]] {self.name}[/] [orange1]joined the lobby![/]"
