@@ -7,7 +7,8 @@ print('another test')
 # Added a comment
 msg = "Hello"
 
-#from minecraft.networking.packets import clientbound
+# this should get printed in discord
+# from minecraft.networking.packets import clientbound
 
 from random import randint
 for i in range(randint(1,10)):
