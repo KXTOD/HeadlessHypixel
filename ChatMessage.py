@@ -41,6 +41,7 @@ class ChatMessage:
 
                     # Gets username color and patches it
                     self.username_color = json_string['color']
+
                     try:
                         self.patchedcolor = correct_color[self.username_color]
                     except KeyError:
