@@ -149,15 +149,15 @@ You can contact us at discord via:
 
 [contributors-url]: https://github.com/JXRIS/Testing/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/JXRIS/Testing.svg?style=for-the-badge
 
 [forks-url]: https://github.com/JXRIS/Testing/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/JXRIS/Testing.svg?style=for-the-badge
 
 [stars-url]: https://github.com/JXRIS/Testing/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/JXRIS/Testing.svg?style=for-the-badge
 
 [issues-url]: https://github.com/JXRIS/Testing/issues
 
