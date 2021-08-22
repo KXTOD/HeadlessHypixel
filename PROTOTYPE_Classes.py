@@ -41,9 +41,10 @@ def main():
             msg = ChatMessage.ChatMessage.Hypixel.Global.LobbyJoinMessage(json_data)
             print(msg.formatted())
         except Exception as e:
+            print('[bold red] ------------------ERROR------------------[/]')
             print(json_data)
             print(e)
-
+            print('[bold red] ------------------ERROR------------------[/]')
 
     connection.register_packet_listener(print_chat, clientbound.play.ChatMessagePacket)
     connection.connect()
