@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import regex as re
 import sys
 from minecraft import authentication
 from minecraft.exceptions import YggdrasilError
@@ -9,7 +8,8 @@ import json
 from rich import print
 from dotenv import load_dotenv
 import os
-import ChatMessage
+from ChatMessage import ChatMessage
+
 
 def main():
     load_dotenv("crd.env")
@@ -24,7 +24,6 @@ def main():
     print(f"Logged in as {auth_token.username}...")
     connection = Connection("play.hypixel.net", 25565, auth_token=auth_token)
 
-
     def handle_join_game(join_packet):
         print('[bold green] Connected..')
 
@@ -32,15 +31,16 @@ def main():
 
     def print_chat(chat_packet):
         json_data = json.loads(chat_packet.json_data)
-        clr_dict = {"§4": "dark_red", "§c": "red", "§6": "orange1", "§e": "bright_yellow", "§2": "dark_green", "§a": "green",
+        clr_dict = {"§4": "dark_red", "§c": "red", "§6": "orange1", "§e": "bright_yellow", "§2": "dark_green",
+                    "§a": "green",
                     "§b": "turquoise2", "§3": "sky_blue3", "§1": "dark_blue", "§9": "blue", "§d": "pink",
                     "§5": "purple", "§f": "bright_white", "§7": "white", "§8": "bright_black", "§0": "black",
                     "§r": "bright_white", "§l": "bold", "§o": "italic", "§n": "underline", "§m": "strike", "§k": ""}
 
         try:
-            msg = ChatMessage.ChatMessage.Hypixel.Global.LobbyJoinMessage(json_data)
+            msg = ChatMessage.Hypixel.Global.LobbyJoinMessage(json_data)
             print(msg.formatted())
-            print(f"UUID: {ChatMessage.ChatMessage.Hypixel.Global.LobbyJoinMessage(json_data).uuid}")
+            print(f"UUID: {msg.uuid}")
         except Exception as e:
             print('[bold red]----------------ERROR------------------[/]')
             print(json_data)
