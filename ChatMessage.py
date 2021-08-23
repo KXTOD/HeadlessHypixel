@@ -18,7 +18,6 @@ correct_color = {"green": "green1", "aqua": "turquoise2", "orange": "orange1",
                  "gray": "bright_black", "red": "bright_red", "dark_green": "dark_green"}
 
 
-
 # Main class
 class ChatMessage:
     # Server
@@ -134,21 +133,35 @@ class ChatMessage:
                         self.rank = "MVP+"
                         string = json_dict["extra"][0]
 
+                    # OLD CODE CAN BE DELETED
+                    # startPoint = n
+                    # for index, item in enumerate(string["text"]):
+                    #     if item == "]" and startPoint is None:
+                    #         startPoint = index + 2
+                    #     elif startPoint is not None:
+                    #         if item == "§":
+                    #             endPoint = index
+                    #             self.name = string["text"][startPoint:endPoint]
+                    #
+                    #     if self.name is not None:
+                    #         break
+                    #
+                    #     if index == len(string) and self.name is not None:
+                    #         print("ERROR: Could not find name.")
+
                     # Sets name
-                    startPoint = n
-                    for index, item in enumerate(string["text"]):
-                        if item == "]" and startPoint is None:
-                            startPoint = index + 2
-                        elif startPoint is not None:
-                            if item == "§":
-                                endPoint = index
-                                self.name = string["text"][startPoint:endPoint]
+                    if self.rank == "MVP++":
+                        self.json_string = json_dict["extra"][1]['text']
+                    else:
+                        self.json_string = json_dict["extra"][0]['text']
 
-                        if self.name is not None:
-                            break
-
-                        if index == len(string) and self.name is not None:
-                            print("ERROR: Could not find name.")
+                    for index, item in enumerate(self.json_string):
+                        if item == "]":
+                            # Regex that stars 2 positions after ] (index+2) and then gets the whole word until a
+                            # space appears, .span() gets the indexes
+                            regex_index = re.match("([^\s]+)", self.json_string[index + 2:]).span()
+                            # Pure magic
+                            self.name = self.json_string[index + 2:index + 2 + regex_index[1] - 2]
 
                     # Sets uuid
                     self.uuid = string["clickEvent"]["value"][13:]
