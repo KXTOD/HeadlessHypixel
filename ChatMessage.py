@@ -10,12 +10,13 @@ rank_colors = {"VIP": "green1", "VIP+": "green1",
                None: "bright_black", "None": "bright_black", "non": "bright_black"}
 
 color_format = {"4": "dark_red", "c": "red", "6": "orange1", "e": "bright_yellow", "2": "dark_green",
-                "a": "green", "b": "turquoise2", "3": "sky_blue3", "1": "dark_blue", "9": "blue", "d": "pink",
+                "a": "green1", "b": "turquoise2", "3": "sky_blue3", "1": "dark_blue", "9": "blue", "d": "pink",
                 "5": "purple", "f": "bright_white", "7": "white", "8": "bright_black", "0": "black",
                 "r": "bright_white", "l": "bold", "o": "italic", "n": "underline", "m": "strike", "k": ""}
 
 correct_color = {"green": "green1", "aqua": "turquoise2", "orange": "orange1",
                  "gray": "bright_black", "red": "bright_red", "dark_green": "dark_green"}
+
 
 
 # Main class
@@ -30,6 +31,57 @@ class ChatMessage:
                 pass
 
         class Global:
+            class FriendList:
+                def __init__(self, json_string):
+                    self.username = n
+                    self.username_color = n
+                    self.status = n
+
+                    # Matches to check for, if they exists message gets ignored
+                    self.matches_flist = [">>", "\n", " §6Friends (Page", "-" * 51, '                         ', '<<',
+                                          '                       ']
+                    self.matches_status = [" is in", " is currently offline"]
+
+                    # Creates user dict
+                    self.user_dict = {}
+
+                    for item in json_string['extra']:
+                        # Filters messages like: Page(1 off 27)
+                        if not any(ext in item['text'] for ext in self.matches_flist):
+                            # If this returns true a username has been found and will be stored
+                            if not any(ext in item['text'] for ext in self.matches_status):
+                                self.username = item['text'][2:]
+                                self.username_color = item['text'][1:2]
+                                self.patched_color = color_format[self.username_color]
+                                # Stores key in user dict with patched color and username and assigns None
+                                self.user_dict[f"[{self.patched_color}]{self.username}[/]"] = None
+
+                            else:
+                                # This will be ran when no username was found
+                                self.status = item['text'][1:]
+                                self.status_color = item['color']
+
+                                # Quick catch for colors
+                                if self.status_color == "yellow":
+                                    self.status_color = "yellow1"
+                                elif self.status_color == "red":
+                                    self.status_color = "red"
+                                else:
+                                    self.status_color = "bright_white"
+
+                                # The value non from user_dict is now removed and replaced by status
+                                self.user_dict[
+                                    f"[{self.patched_color}]{self.username}[/]"] = f"[{self.status_color}]{self.status}[/]"
+
+                def formatted(self):
+                    # I added the formatting in the user_dict since doing it here was to much lines of code
+                    # TODO Adding friend page index
+                    chatmsg = f"[blue3]{51 * '-'}[/]\n"
+                    for item in self.user_dict:
+                        chatmsg = chatmsg + f"{item} {self.user_dict[item]}\n"
+
+                    return chatmsg + f"[blue3]{51 * '-'}[/]\n"
+
             class WatchdogMessage:
                 def __init__(self, json_string):
                     # Gets message
