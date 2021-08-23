@@ -47,22 +47,22 @@ class ChatMessage:
 
                     # Tries to apply correct color
                     try:
-                        self.patchedcolor = correct_color[self.message_color]
+                        self.patched_colorr = correct_color[self.message_color]
                     except KeyError:
-                        self.patchedcolor = "bright_white"
+                        self.patched_color = "bright_white"
 
                 def formatted(self):
-                    return f"[{self.bold}{self.patchedcolor}]{self.message}"
+                    return f"[{self.bold}{self.patched_color}]{self.message}"
 
                 def debugPrint(self):
                     print(
-                        f"Bold: {self.bold}\nMessage: {self.message}\nMessage Color: {self.message_color}\nPatched color: {self.patchedcolor}")
+                        f"Bold: {self.bold}\nMessage: {self.message}\nMessage Color: {self.message_color}\nPatched color: {self.patched_color}")
 
             class FriendStatus:
                 def __init__(self, json_string):
                     self.username = n
                     self.username_color = n
-                    self.patchedcolor = n
+                    self.patched_color = n
                     self.status = n
 
                     # Gets username
@@ -72,16 +72,16 @@ class ChatMessage:
                     self.username_color = json_string['extra'][0]['color']
 
                     try:
-                        self.patchedcolor = correct_color[self.username_color]
+                        self.patched_color = correct_color[self.username_color]
                     except KeyError:
-                        self.patchedcolor = "bright_white"
+                        self.patched_color = "bright_white"
 
                     # Gets status (join/leave)
                     self.status = json_string['extra'][1]['text']
 
                 def debugPrint(self):
                     print(
-                        f"Name: {self.username}\nColor: {self.username_color}\nStatus: {self.status}\nPatched color: {self.patchedcolor}\n")
+                        f"Name: {self.username}\nColor: {self.username_color}\nStatus: {self.status}\nPatched color: {self.patched_color}\n")
 
                 def formatted(self):
                     return f"[green1]Friend > [/][{correct_color[self.username_color]}]{self.username}[/][bright_yellow]{self.status}[/]"
@@ -91,7 +91,7 @@ class ChatMessage:
                     self.username_color = n
                     self.username = n
                     self.rating = n
-                    self.patchecolor = n
+                    self.patched_color = n
 
                     # Gets username
                     self.username = json_string['text']
@@ -100,16 +100,16 @@ class ChatMessage:
                     self.username_color = json_string['color']
 
                     try:
-                        self.patchedcolor = correct_color[self.username_color]
+                        self.patched_color = correct_color[self.username_color]
                     except KeyError:
-                        self.patchedcolor = "bright_white"
+                        self.patched_color = "bright_white"
 
                     # Gets rating
                     self.rating = json_string['extra'][1]['text']
 
                 def debugPrint(self):
                     print(
-                        f"Name: {self.username}\nColor: {self.username_color}\nRating: {self.rating}\nPatched color: {self.patchedcolor}\n")
+                        f"Name: {self.username}\nColor: {self.username_color}\nRating: {self.rating}\nPatched color: {self.patched_color}\n")
 
                 def formatted(self):
                     return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating}[/][turquoise2]Mystery Box[/][bright_white]![/]"
@@ -132,22 +132,6 @@ class ChatMessage:
                     else:
                         self.rank = "MVP+"
                         string = json_dict["extra"][0]
-
-                    # OLD CODE CAN BE DELETED
-                    # startPoint = n
-                    # for index, item in enumerate(string["text"]):
-                    #     if item == "]" and startPoint is None:
-                    #         startPoint = index + 2
-                    #     elif startPoint is not None:
-                    #         if item == "§":
-                    #             endPoint = index
-                    #             self.name = string["text"][startPoint:endPoint]
-                    #
-                    #     if self.name is not None:
-                    #         break
-                    #
-                    #     if index == len(string) and self.name is not None:
-                    #         print("ERROR: Could not find name.")
 
                     # Sets name
                     if self.rank == "MVP++":
