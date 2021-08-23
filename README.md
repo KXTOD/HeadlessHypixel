@@ -65,11 +65,10 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Todo</a></li>
+    <li><a href="#Todo">Todo</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -97,7 +96,7 @@ variables. These variables are <b>USR</b> <i>(username)</i> and <b>PSS</b> <i>(p
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/https://github.com/JXRIS/Testing.git
    ```
 2. Install the necessary packages
 
