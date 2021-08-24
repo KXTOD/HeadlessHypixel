@@ -1,6 +1,5 @@
 from rich import print
 import regex as re
-import json
 
 n = None
 
