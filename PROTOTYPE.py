@@ -36,8 +36,8 @@ def main():
                     "§b": "turquoise2", "§3": "sky_blue3", "§1": "dark_blue", "§9": "blue", "§d": "pink",
                     "§5": "purple", "§f": "bright_white", "§7": "white", "§8": "bright_black", "§0": "black",
                     "§r": "bright_white", "§l": "bold", "§o": "italic", "§n": "underline", "§m": "strike", "§k": ""}
-
-        try:
+        # Commented out this area; intend to use this for getting json
+        """try:
 
             if json_data["extra"][0]["text"] == " §b>§c>§a>§r ":
                 string = json_data["extra"][1]['text']
@@ -77,7 +77,9 @@ def main():
                 print(f"{chatmsg}")
 
         except Exception:
-            print(json_data)
+            print(json_data)"""
+
+        print(json_data)
 
     connection.register_packet_listener(print_chat, clientbound.play.ChatMessagePacket)
     connection.connect()

@@ -38,6 +38,7 @@ bw_message = {
     ]
 }
 
+
 # Main class
 class ChatMessage:
     # Server
@@ -80,6 +81,8 @@ class ChatMessage:
         class Global:
             class PrivateMessage:
                 def __init__(self, json_string):
+                    # TODO could be updated to store sender and their rank? Also message could be separated from the sender
+
                     # Status (From/To)
                     self.status = n
                     self.status_color = n
@@ -105,7 +108,10 @@ class ChatMessage:
                 def formatted(self):
                     return f"[{self.patched_status_color}]{self.status}[/]{self.chat_message}"
 
-                # TODO Adding debugPrint()
+                def debugPrint(self):
+                    print(f"Status: {self.status}\nStatus color: {self.status_color}\n"
+                          f"Patched status color: {self.patched_status_color}\n\nChat message: {self.chat_message}\n"
+                          f"Chat color: {self.chat_color}\nPatched chat color: {self.patched_chat_color}")
 
             class FriendList:
                 def __init__(self, json_string):
@@ -160,6 +166,9 @@ class ChatMessage:
                     return self.chat_message + f"[blue3]{51 * '-'}[/]\n"
 
                 # TODO Add debugPrint()
+                def debugPrint(self):
+                    # Not entirely sure how this code works! - Simon
+                    pass
 
             class WatchdogMessage:
                 def __init__(self, json_string):
