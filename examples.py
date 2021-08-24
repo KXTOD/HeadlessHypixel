@@ -21,6 +21,7 @@ bw_chat_message = {
 
 friend_status = {'text': 'Friend > ', 'color': 'green',
                  'extra': [{'text': 'JqmmyYT ', 'color': 'green'}, {'text': 'left.', 'color': 'yellow'}]}
+
 skywars_chat_message = {
     'text': '',
     'strikethrough': False,
@@ -45,5 +46,70 @@ watchdog_json = [
     {'italic': False, 'extra': [{'color': 'aqua', 'text': 'Use /report to continue helping out the server!'}],
      'text': ''}
 ]
+
+
+chat_message = {
+    'text': '',
+    'strikethrough': False,
+    'extra': [
+        {
+            'text': '§7jenscc2006§7',
+            'strikethrough': False,
+            'clickEvent': {'action': 'run_command', 'value': '/viewprofile 5beb3dff-b44d-49af-8ad0-f35aecac9eb7'},
+            'hoverEvent': {
+                'action': 'show_text',
+                'value': {'text': "§7jenscc2006§7\n§7Hypixel Level: §61\n§7Achievement Points: §e35\n§7Guild: §b§bNone\n\n§eClick to view §7jenscc2006§e's profile!", 'strikethrough': False}
+            }
+        },
+        {'text': 'This is where the chat message is. Its not what jenscc2006 actually said. They made an emote and it was hard to see. Is this illegal?', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
+    ]
+}
+
+important_mystery_box_opened = {
+    'text': '[Mystery Box] ',
+    'strikethrough': False,
+    'color': 'aqua',
+    'hoverEvent': {
+        'action': 'show_text',
+        'value': {
+            'text': 'You can find ',
+            'bold': False,
+            'italic': False,
+            'underlined': False,
+            'obfuscated': False,
+            'strikethrough': False,
+            'color': 'gray',
+            'extra': [
+                {'text': 'Mystery Boxes ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'aqua'},
+                {'text': 'by\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'},
+                {'text': 'playing games on the server!', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
+            ]
+        }
+    },
+    'extra': [
+        {
+            'text': '§f§bFrost_alt §ffound a §6Legendary Thor Suit Head§f!',
+            'strikethrough': False,
+            'color': 'aqua',
+            'hoverEvent': {
+                'action': 'show_text',
+                'value': {
+                    'text': 'Type: ',
+                    'bold': False,
+                    'italic': False,
+                    'underlined': False,
+                    'obfuscated': False,
+                    'strikethrough': False,
+                    'color': 'gray',
+                    'extra': [
+                        {'text': 'Suit Pieces\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'yellow'},
+                        {'text': 'Rarity: ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'},
+                        {'text': 'Legendary', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gold'}
+                    ]
+                }
+            }
+        }
+    ]
+}
 
 limbo_message = {'text': 'You are AFK. Move around to return from AFK.', 'color': 'red'}

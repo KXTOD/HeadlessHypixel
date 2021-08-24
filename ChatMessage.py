@@ -22,7 +22,6 @@ correct_color = {"green": "#55FF55", "aqua": "#55FFFF", "orange": "orange1",
                  "black": "#000000"}
 
 
-
 # Main class
 class ChatMessage:
     # Server
@@ -65,7 +64,8 @@ class ChatMessage:
                 return f"{self.username}{self.message}"
 
             def debugPrint(self):
-                print(f"Username: {self.username}\nMessage: {self.message}\nColor code: {self.color_code}\nPatched color: {self.patched_color}")
+                print(
+                    f"Username: {self.username}\nMessage: {self.message}\nColor code: {self.color_code}\nPatched color: {self.patched_color}")
 
         class Global:
             class LimboMessage():
