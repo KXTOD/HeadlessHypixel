@@ -4,7 +4,7 @@ from examples import limbo_message
 
 n = None
 
-# TODO Changing all character colors to hexadecimal
+# Todo looking for closer color combinations so chat gets matched
 rank_colors = {"VIP": "green1", "VIP+": "green1",
                "MVP": "turquoise2", "MVP+": "turquoise2",
                "MVP++": "orange1",

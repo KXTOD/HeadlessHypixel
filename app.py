@@ -9,6 +9,7 @@ from rich import print
 from dotenv import load_dotenv
 import os
 from ChatMessage import ChatMessage
+import traceback
 
 
 def main():
@@ -49,10 +50,14 @@ def main():
             elif "✫" in json_data['extra'][0]['text']:
                 print("[bold orange1] found bw message")
                 print(ChatMessage.Hypixel.HypixelBedwarsLobby(json_string=json_data).formatted())
+            elif json_data['text'] == "You are AFK. Move around to return from AFK." and json_data['color'] == "red":
+                print(ChatMessage.Hypixel.Global.LimboMessage(json_string=json_data).formatted())
             else:
                 print(json_data)
 
         except Exception as e:
+            tb = sys.exc_info()[-1]
+            stk = traceback.extract_tb(tb, 1)
             print('[bold red]----------------ERROR------------------[/]')
             print(json_data)
             print(f"[bold red]Element causing the error: [/]{e}")
