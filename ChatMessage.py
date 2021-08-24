@@ -1,5 +1,6 @@
 from rich import print
 import regex as re
+from examples import limbo_message
 
 n = None
 
@@ -67,6 +68,15 @@ class ChatMessage:
                 print(f"Username: {self.username}\nMessage: {self.message}\nColor code: {self.color_code}\nPatched color: {self.patched_color}")
 
         class Global:
+            class LimboMessage():
+                def __init__(self, json_string):
+                    self.message = json_string['text']
+                    self.chat_color = json_string['color']
+                    self.patched_color = correct_color[self.chat_color]
+
+                def formatted(self):
+                    return f"[{self.patched_color}]{self.message}[/]"
+
             class PrivateMessage:
                 def __init__(self, json_string):
                     # TODO could be updated to store sender and their rank? Also message could be separated from the sender
@@ -243,6 +253,7 @@ class ChatMessage:
                     return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating} [/][turquoise2]Mystery Box[/][bright_white]![/]"
 
             class LobbyJoinMessage:
+                # Todo change json_dict to json_string
                 def __init__(self, json_dict):
 
                     self.name = n
@@ -352,7 +363,3 @@ class ChatMessage:
                         return f"[turquoise2]>[/][red]>[/][green3]>[/] [{rank_colors[self.rank]}][MVP[/][{color_format[self.rankColour]}]++[/][{rank_colors[self.rank]}]] {self.name}[/] [orange1]joined the lobby! [/][green3]<[/][red]<[/][turquoise2]<[/]"
                     else:
                         return f"[turquoise2][MVP[/][{color_format[self.rankColour]}]+[/][turquoise2]] {self.name}[/] [orange1]joined the lobby![/]"
-
-
-#msg = ChatMessage.Hypixel.HypixelBedwarsLobby(bw_message)
-#msg.debugPrint()

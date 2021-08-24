@@ -45,3 +45,5 @@ watchdog_json = [
     {'italic': False, 'extra': [{'color': 'aqua', 'text': 'Use /report to continue helping out the server!'}],
      'text': ''}
 ]
+
+limbo_message = {'text': 'You are AFK. Move around to return from AFK.', 'color': 'red'}

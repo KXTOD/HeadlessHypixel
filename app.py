@@ -31,7 +31,8 @@ def main():
 
     def print_chat(chat_packet):
         json_data = json.loads(chat_packet.json_data)
-
+        # Todo fix friends message not being detected
+        # Todo fix bedwars message not being detected
         try:
             private_message_matches = ["From ", "To "]
             if any(ext in json_data['text'] for ext in private_message_matches) and json_data[
