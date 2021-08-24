@@ -19,24 +19,6 @@ correct_color = {"green": "#55FF55", "aqua": "#55FFFF", "orange": "orange1",
                  "light_purple": "#FF55FF", "dark_purple": "#AA00AA", "white": "bright_white", "dark_gray": "#555555",
                  "black": "#000000"}
 
-bw_message = {
-    'text': '',
-    'strikethrough': False,
-    'extra': [
-        {
-            'text': '§7[44✫] §b[MVP§9+§b] ByonPlays§f',
-            'strikethrough': False,
-            'clickEvent': {'action': 'run_command', 'value': '/viewprofile 880a651b-ffc1-460f-9f91-4449f069ab03'},
-            'hoverEvent': {'action': 'show_text', 'value': {
-                'text': "§b[MVP§9+§b] ByonPlays§f\n§7Hypixel Level: §6117\n§7Achievement Points: §e2,905\n§7Guild: §b§bNone\n\n§eClick to view §bByonPlays§e's profile!",
-                'strikethrough': False}}
-        },
-        {
-            'text': ': Need an active guild do /g join Team Voided (Level 83) Tag:✧VOID✧ Reqs: Network lvl 60 or 500 wins in BW. Must have Discord and get 100k weekly.',
-            'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False,
-            'color': 'white'}
-    ]
-}
 
 
 # Main class
@@ -61,6 +43,8 @@ class ChatMessage:
                 # Assigning properties
                 self.username = json_string['extra'][0]['text']
                 self.message = json_string['extra'][1]['text']
+
+                # TODO Fixing this terrible code
                 for character in self.username:
                     if character == "§":
                         try:
