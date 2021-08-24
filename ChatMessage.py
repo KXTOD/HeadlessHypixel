@@ -78,6 +78,9 @@ class ChatMessage:
             def formatted(self):
                 return f"{self.username}{self.message}"
 
+            def debugPrint(self):
+                print(f"Username: {self.username}\nMessage: {self.message}\nColor code: {self.color_code}\nPatched color: {self.patched_color}")
+
         class Global:
             class PrivateMessage:
                 def __init__(self, json_string):
@@ -364,3 +367,7 @@ class ChatMessage:
                         return f"[turquoise2]>[/][red]>[/][green3]>[/] [{rank_colors[self.rank]}][MVP[/][{color_format[self.rankColour]}]++[/][{rank_colors[self.rank]}]] {self.name}[/] [orange1]joined the lobby! [/][green3]<[/][red]<[/][turquoise2]<[/]"
                     else:
                         return f"[turquoise2][MVP[/][{color_format[self.rankColour]}]+[/][turquoise2]] {self.name}[/] [orange1]joined the lobby![/]"
+
+
+#msg = ChatMessage.Hypixel.HypixelBedwarsLobby(bw_message)
+#msg.debugPrint()
