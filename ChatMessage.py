@@ -3,6 +3,7 @@ import regex as re
 
 n = None
 
+# TODO Changing all character colors to hexadecimal
 rank_colors = {"VIP": "green1", "VIP+": "green1",
                "MVP": "turquoise2", "MVP+": "turquoise2",
                "MVP++": "orange1",
@@ -152,7 +153,6 @@ class ChatMessage:
 
                     return self.chat_message + f"[blue3]{51 * '-'}[/]\n"
 
-                # TODO Add debugPrint()
                 def debugPrint(self):
                     # Not entirely sure how this code works! - Simon
                     pass
@@ -214,6 +214,7 @@ class ChatMessage:
                     return f"[green1]Friend > [/][{correct_color[self.username_color]}]{self.username}[/][bright_yellow]{self.status}[/]"
 
             class MysteryBoxes:
+                # TODO Fixing rating "issue"
                 def __init__(self, json_string):
                     self.username_color = n
                     self.username = n
