@@ -14,9 +14,11 @@ color_format = {"4": "dark_red", "c": "red", "6": "orange1", "e": "bright_yellow
                 "5": "purple", "f": "bright_white", "7": "white", "8": "bright_black", "0": "black",
                 "r": "bright_white", "l": "bold", "o": "italic", "n": "underline", "m": "strike", "k": ""}
 
-correct_color = {"green": "green1", "aqua": "turquoise2", "orange": "orange1",
-                 "gray": "bright_black", "red": "bright_red", "dark_green": "dark_green"}
-
+correct_color = {"green": "#55FF55", "aqua": "#55FFFF", "orange": "orange1",
+                 "gray": "#AAAAAA", "red": "#FF5555", "dark_green": "#00AA00", "dark_red": "#AA0000", "gold": "#FFAA00",
+                 "yellow": "#FFFF55", "dark_aqua": "#00AAAA", "dark_blue": "#0000AA", "blue": "#5555FF",
+                 "light_purple": "#FF55FF", "dark_purple": "#AA00AA", "white": "bright_white", "dark_gray": "#555555",
+                 "black": "#000000"}
 
 
 # Main class
@@ -31,11 +33,39 @@ class ChatMessage:
                 pass
 
         class Global:
+            class PrivateMessage:
+                def __init__(self, json_string):
+                    # Status (From/To)
+                    self.status = n
+                    self.status_color = n
+                    self.patched_status_color = n
+
+                    # The message itself
+                    self.chat_color = n
+                    self.chat_message = n
+                    self.patched_chat_color = n
+
+                    # Retrieving values
+                    self.status = json_string['text']
+                    self.status_color = json_string['color']
+                    self.patched_status_color = correct_color[self.status_color]
+                    self.chat_message = ""
+
+                    # Loops trough chat strings
+                    for element in json_string['extra']:
+                        self.chat_color = element['color']
+                        self.patched_color = correct_color[self.chat_color]
+                        self.chat_message = self.chat_message + str(f"[{self.patched_color}]") + element['text'] + "[/]"
+
+                def formatted(self):
+                    return f"[{self.patched_status_color}]{self.status}[/]{self.chat_message}"
+
             class FriendList:
                 def __init__(self, json_string):
                     self.username = n
                     self.username_color = n
                     self.status = n
+                    self.chat_message = n
 
                     # Matches to check for, if they exists message gets ignored
                     self.matches_flist = [">>", "\n", " §6Friends (Page", "-" * 51, '                         ', '<<',
@@ -76,11 +106,13 @@ class ChatMessage:
                 def formatted(self):
                     # I added the formatting in the user_dict since doing it here was to much lines of code
                     # TODO Adding friend page index
-                    chatmsg = f"[blue3]{51 * '-'}[/]\n"
+                    self.chat_message = f"[blue3]{51 * '-'}[/]\n"
                     for item in self.user_dict:
-                        chatmsg = chatmsg + f"{item} {self.user_dict[item]}\n"
+                        self.chat_message = self.chat_message + f"{item} {self.user_dict[item]}\n"
 
-                    return chatmsg + f"[blue3]{51 * '-'}[/]\n"
+                    return self.chat_message + f"[blue3]{51 * '-'}[/]\n"
+
+                # TODO Add debugPrint()
 
             class WatchdogMessage:
                 def __init__(self, json_string):
