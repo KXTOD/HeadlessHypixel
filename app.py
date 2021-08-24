@@ -40,10 +40,14 @@ def main():
             elif json_data['extra'][0]['text'] == " §b>§c>§a>§r " or "§6joined the lobby!" in json_data['extra'][0][
                 'text']:
                 print(ChatMessage.Hypixel.Global.LobbyJoinMessage(json_dict=json_data).formatted())
-            elif json_data['extra'][2]['text'] == "Mystery Box" and json_data['extra'][2]['color'] == "aqua":
+            elif json_data['extra'][2]['text'] == "Mystery Box" or json_data['extra'][3]['text'] == "Mystery Box" and \
+                    json_data['extra'][2]['color'] == "aqua" or json_data['extra'][3]['color'] == "aqua":
                 print(ChatMessage.Hypixel.Global.MysteryBoxes(json_string=json_data).formatted())
             elif json_data['text'] == "Friend > " and json_data['color'] == "green":
                 print(ChatMessage.Hypixel.Global.FriendStatus(json_string=json_data).formatted())
+            elif "✫" in json_data['extra'][0]['text']:
+                print("[bold orange1] found bw message")
+                print(ChatMessage.Hypixel.HypixelBedwarsLobby(json_string=json_data).formatted())
             else:
                 print(json_data)
 

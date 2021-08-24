@@ -19,6 +19,24 @@ correct_color = {"green": "#55FF55", "aqua": "#55FFFF", "orange": "orange1",
                  "light_purple": "#FF55FF", "dark_purple": "#AA00AA", "white": "bright_white", "dark_gray": "#555555",
                  "black": "#000000"}
 
+bw_message = {
+    'text': '',
+    'strikethrough': False,
+    'extra': [
+        {
+            'text': '§7[44✫] §b[MVP§9+§b] ByonPlays§f',
+            'strikethrough': False,
+            'clickEvent': {'action': 'run_command', 'value': '/viewprofile 880a651b-ffc1-460f-9f91-4449f069ab03'},
+            'hoverEvent': {'action': 'show_text', 'value': {
+                'text': "§b[MVP§9+§b] ByonPlays§f\n§7Hypixel Level: §6117\n§7Achievement Points: §e2,905\n§7Guild: §b§bNone\n\n§eClick to view §bByonPlays§e's profile!",
+                'strikethrough': False}}
+        },
+        {
+            'text': ': Need an active guild do /g join Team Voided (Level 83) Tag:✧VOID✧ Reqs: Network lvl 60 or 500 wins in BW. Must have Discord and get 100k weekly.',
+            'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False,
+            'color': 'white'}
+    ]
+}
 
 # Main class
 class ChatMessage:
@@ -30,6 +48,34 @@ class ChatMessage:
         class HypixelSkywarsLobby:
             def __init__(self):
                 pass
+
+        class HypixelBedwarsLobby:
+            def __init__(self, json_string):
+                # Initializing properties
+                self.username = n
+                self.message = n
+                self.color_code = n
+                self.patched_color = n
+
+                # Assigning properties
+                self.username = json_string['extra'][0]['text']
+                self.message = json_string['extra'][1]['text']
+                for character in self.username:
+                    if character == "§":
+                        try:
+                            self.color_code = self.username[self.username.index(character) + 1]
+                        except ValueError:
+                            continue
+                        self.patched_color = f"[{color_format[self.color_code]}]"
+                        try:
+                            self.username = self.username.replace(
+                                self.username[self.username.index(character):self.username.index(character) + 2],
+                                self.patched_color)
+                        except ValueError:
+                            continue
+
+            def formatted(self):
+                return f"{self.username}{self.message}"
 
         class Global:
             class PrivateMessage:
@@ -58,6 +104,8 @@ class ChatMessage:
 
                 def formatted(self):
                     return f"[{self.patched_status_color}]{self.status}[/]{self.chat_message}"
+
+                # TODO Adding debugPrint()
 
             class FriendList:
                 def __init__(self, json_string):
@@ -195,7 +243,7 @@ class ChatMessage:
                         f"Name: {self.username}\nColor: {self.username_color}\nRating: {self.rating}\nPatched color: {self.patched_color}\n")
 
                 def formatted(self):
-                    return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating}[/][turquoise2]Mystery Box[/][bright_white]![/]"
+                    return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating} [/][turquoise2]Mystery Box[/][bright_white]![/]"
 
             class LobbyJoinMessage:
                 def __init__(self, json_dict):
