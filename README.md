@@ -102,7 +102,8 @@ variables. These variables are <b>USR</b> <i>(username)</i> and <b>PSS</b> <i>(p
 
 ## Usage
 
-Start by running PROTOTYPE.PY, it will start outputting some messages. Most messages wont be formatted.
+Start by running ```app.py```, it will start outputting some messages. Currently only the bedwars lobby is supported for
+full chat usage.
 
 
 
@@ -136,8 +137,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 You can contact us at discord via:
 
-1. vcoan#5460
-2. SimonsBrother#2852
+1. ```vcoan#5460```
+2. ```SimonsBrother#2852```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
