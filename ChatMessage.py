@@ -1,7 +1,6 @@
 from rich import print
 import regex as re
 from examples import limbo_message
-
 n = None
 
 # Todo looking for closer color combinations so chat gets matched
