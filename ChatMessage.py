@@ -14,7 +14,7 @@ color_format = {"4": "dark_red", "c": "red", "6": "orange1", "e": "bright_yellow
                 "5": "purple", "f": "bright_white", "7": "white", "8": "bright_black", "0": "black",
                 "r": "bright_white", "l": "bold", "o": "italic", "n": "underline", "m": "strike", "k": ""}
 
-correct_color = {"green": "#55FF55", "aqua": "#55FFFF", "orange": "orange1",
+correct_color = {"green": "#55FF55", "aqua": "turquoise2", "orange": "orange1",
                  "gray": "#AAAAAA", "red": "#FF5555", "dark_green": "#00AA00", "dark_red": "#AA0000", "gold": "#FFAA00",
                  "yellow": "#FFFF55", "dark_aqua": "#00AAAA", "dark_blue": "#0000AA", "blue": "#5555FF",
                  "light_purple": "#FF55FF", "dark_purple": "#AA00AA", "white": "bright_white", "dark_gray": "#555555",
