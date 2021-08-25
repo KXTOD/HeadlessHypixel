@@ -103,8 +103,10 @@ important_mystery_box_opened = {
                     'color': 'gray',
                     'extra': [
                         {'text': 'Suit Pieces\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'yellow'},
-                        {'text': 'Rarity: ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'},
-                        {'text': 'Legendary', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gold'}
+                        {'text': 'Rarity: ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                         'strikethrough': False, 'color': 'gray'},
+                        {'text': 'Legendary', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                         'strikethrough': False, 'color': 'gold'}
                     ]
                 }
             }
@@ -113,3 +115,76 @@ important_mystery_box_opened = {
 }
 
 limbo_message = {'text': 'You are AFK. Move around to return from AFK.', 'color': 'red'}
+
+quest_message = {
+    'text': '§aAutomatically activated: §6Daily Quest: First Win of the Day',
+    'strikethrough': False,
+    'color': 'green',
+    'hoverEvent': {
+        'action': 'show_text',
+        'value': {
+            'text': 'Daily Quest: First Win of the Day\n',
+            'bold': False,
+            'italic': False,
+            'underlined': False,
+            'obfuscated': False,
+            'strikethrough': False,
+            'color': 'green',
+            'extra': [{'text': 'Win a game of Bed Wars', 'bold': False, 'italic': False, 'underlined': False,
+                       'obfuscated': False, 'strikethrough': False, 'color': 'gray'}]
+        }
+    }
+}
+
+mystery_box_rare_item = {
+    'text': '[Mystery Box] ',
+    'strikethrough': False,
+    'color': 'aqua',
+    'hoverEvent': {
+        'action': 'show_text',
+        'value': {
+            'text': 'You can find ',
+            'bold': False,
+            'italic': False,
+            'underlined': False,
+            'obfuscated': False,
+            'strikethrough': False,
+            'color': 'gray',
+            'extra': [
+                {'text': 'Mystery Boxes ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                 'strikethrough': False, 'color': 'aqua'},
+                {'text': 'by\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                 'strikethrough': False, 'color': 'gray'},
+                {'text': 'playing games on the server!', 'bold': False, 'italic': False, 'underlined': False,
+                 'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
+            ]
+        }
+    },
+    'extra': [
+        {
+            'text': '§f§aPinguinKeks6522 §ffound a §5Epic Wave Dance Gesture§f!',
+            'strikethrough': False,
+            'color': 'aqua',
+            'hoverEvent': {
+                'action': 'show_text',
+                'value': {
+                    'text': 'Type: ',
+                    'bold': False,
+                    'italic': False,
+                    'underlined': False,
+                    'obfuscated': False,
+                    'strikethrough': False,
+                    'color': 'gray',
+                    'extra': [
+                        {'text': 'Gestures\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                         'strikethrough': False, 'color': 'yellow'},
+                        {'text': 'Rarity: ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                         'strikethrough': False, 'color': 'gray'},
+                        {'text': 'Epic', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                         'strikethrough': False, 'color': 'dark_purple'}
+                    ]
+                }
+            }
+        }
+    ]
+}
