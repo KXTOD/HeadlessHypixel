@@ -13,6 +13,7 @@ from ChatMessage import ChatMessage
 print_log_on_exit = True
 log = [ChatMessage.LogMsg("Started app.py", color="#008888")]
 
+
 def main():
     load_dotenv("crd.env")
     USR = os.getenv('USR')
@@ -40,8 +41,8 @@ def main():
                     == "light_purple":
                 print(ChatMessage.Hypixel.Global.PrivateMessage(json_dict=json_data).formatted())
                 return
-        except (IndexError, KeyError):
-            pass
+        except (IndexError, KeyError) as e:
+            log.append(ChatMessage.LogMsg(e, "Private messages"))
 
         try:
             if json_data['extra'][0]['text'] == " §b>§c>§a>§r " or "§6joined the lobby!" in json_data['extra'][0][
@@ -49,36 +50,36 @@ def main():
                 print(ChatMessage.Hypixel.Global.LobbyJoinMessage(json_dict=json_data).formatted())
                 return
         except (IndexError, KeyError) as e:
-            pass
-
+            log.append(ChatMessage.LogMsg(e, "Lobby join messages"))
+        # TODO First message is being identified as mystery box - maybe it should be "and" instead of "or"?
         try:
             if json_data['extra'][2]['text'] == "Mystery Box" or json_data['extra'][3]['text'] == "Mystery Box" and \
                     json_data['extra'][2]['color'] == "aqua" or json_data['extra'][3]['color'] == "aqua":
                 print(ChatMessage.Hypixel.Global.MysteryBoxes(json_dict=json_data).formatted())
                 return
         except (IndexError, KeyError) as e:
-            pass
+            log.append(ChatMessage.LogMsg(e, "Got Mystery Box announcement"))
 
         try:
             if json_data['text'] == "Friend > " and json_data['color'] == "green":
                 print(ChatMessage.Hypixel.Global.FriendStatus(json_dict=json_data).formatted())
                 return
         except (IndexError, KeyError) as e:
-            pass
+            log.append(ChatMessage.LogMsg(e, "Friend status"))
 
         try:
             if "✫" in json_data['extra'][0]['text']:
                 print(ChatMessage.Hypixel.HypixelBedwarsLobby(json_dict=json_data).formatted())
                 return
         except (IndexError, KeyError) as e:
-            pass
+            log.append(ChatMessage.LogMsg(e, "Bedwars lobby player chat"))
 
         try:
             if json_data['text'] == "You are AFK. Move around to return from AFK." and json_data['color'] == "red":
                 print(ChatMessage.Hypixel.Global.LimboMessage(json_dict=json_data).formatted())
                 return
         except (IndexError, KeyError) as e:
-            pass
+            log.append(ChatMessage.LogMsg(e, "AFK"))
 
         try:
             if json_data['extra'][3]['text'].startswith(">>") or json_data['extra'][2]['text'].startswith("<<") \
@@ -88,6 +89,8 @@ def main():
         except Exception as e:
             print(e)
             print(json_data)
+            # log.append(ChatMessage.LogMsg(e, json_data, raw=True)) - fills up log
+            log.append(ChatMessage.LogMsg(e, "Final catch exception - likely unsupported message."))
             pass
 
     connection.register_packet_listener(print_chat, clientbound.play.ChatMessagePacket)
