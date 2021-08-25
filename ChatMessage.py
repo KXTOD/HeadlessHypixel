@@ -365,14 +365,20 @@ class ChatMessage:
 
     # Other
     class LogMsg:
-        def __init__(self, msg, other="", color="#FF3333", other_color="white"):
+        def __init__(self, msg, other="", raw=False, color="#FF3333", other_color="white"):
             self.message = msg
             self.other = other
             self.timestamp = datetime.datetime.now().time()
             self.color = color
             self.other_color = other_color
+            self.raw = raw
 
-        def printLogMsg(self):
-            print(f"{str(self.timestamp)[:8]}: [{self.color}]{self.message}[/]")
-            if self.other:
-                print(f"Additional data: [{self.other_color}]{self.other}[/]")
+        def printLogMsg(self, raw=False):
+            if self.raw or raw:
+                print(f"{str(self.timestamp)[:8]}: {self.message}")
+                if self.other:
+                    print(f"Additional data: {self.other}")
+            else:
+                print(f"{str(self.timestamp)[:8]}: [{self.color}]{self.message}[/]")
+                if self.other:
+                    print(f"Additional data: [{self.other_color}]{self.other}[/]")

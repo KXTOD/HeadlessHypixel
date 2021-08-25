@@ -48,7 +48,7 @@ def main():
                 'text']:
                 print(ChatMessage.Hypixel.Global.LobbyJoinMessage(json_dict=json_data).formatted())
                 return
-        except (IndexError, KeyError):
+        except (IndexError, KeyError) as e:
             pass
 
         try:
@@ -56,28 +56,28 @@ def main():
                     json_data['extra'][2]['color'] == "aqua" or json_data['extra'][3]['color'] == "aqua":
                 print(ChatMessage.Hypixel.Global.MysteryBoxes(json_dict=json_data).formatted())
                 return
-        except (IndexError, KeyError):
+        except (IndexError, KeyError) as e:
             pass
 
         try:
             if json_data['text'] == "Friend > " and json_data['color'] == "green":
                 print(ChatMessage.Hypixel.Global.FriendStatus(json_dict=json_data).formatted())
                 return
-        except (IndexError, KeyError):
+        except (IndexError, KeyError) as e:
             pass
 
         try:
             if "✫" in json_data['extra'][0]['text']:
                 print(ChatMessage.Hypixel.HypixelBedwarsLobby(json_dict=json_data).formatted())
                 return
-        except (IndexError, KeyError):
+        except (IndexError, KeyError) as e:
             pass
 
         try:
             if json_data['text'] == "You are AFK. Move around to return from AFK." and json_data['color'] == "red":
                 print(ChatMessage.Hypixel.Global.LimboMessage(json_dict=json_data).formatted())
                 return
-        except (IndexError, KeyError):
+        except (IndexError, KeyError) as e:
             pass
 
         try:
