@@ -33,7 +33,7 @@ class ChatMessage:
                 pass
 
         class HypixelBedwarsLobby:
-            def __init__(self, json_string):
+            def __init__(self, json_dict):
                 # Initializing properties
                 self.username = n
                 self.message = n
@@ -41,8 +41,8 @@ class ChatMessage:
                 self.patched_color = n
 
                 # Assigning properties
-                self.username = json_string['extra'][0]['text']
-                self.message = json_string['extra'][1]['text']
+                self.username = json_dict['extra'][0]['text']
+                self.message = json_dict['extra'][1]['text']
 
                 # TODO Fixing this terrible code
                 for character in self.username:
@@ -68,16 +68,16 @@ class ChatMessage:
 
         class Global:
             class LimboMessage():
-                def __init__(self, json_string):
-                    self.message = json_string['text']
-                    self.chat_color = json_string['color']
+                def __init__(self, json_dict):
+                    self.message = json_dict['text']
+                    self.chat_color = json_dict['color']
                     self.patched_color = correct_color[self.chat_color]
 
                 def formatted(self):
                     return f"[{self.patched_color}]{self.message}[/]"
 
             class PrivateMessage:
-                def __init__(self, json_string):
+                def __init__(self, json_dict):
                     # TODO could be updated to store sender and their rank? Also message could be separated from the sender
 
                     # Status (From/To)
@@ -91,13 +91,13 @@ class ChatMessage:
                     self.patched_chat_color = n
 
                     # Retrieving values
-                    self.status = json_string['text']
-                    self.status_color = json_string['color']
+                    self.status = json_dict['text']
+                    self.status_color = json_dict['color']
                     self.patched_status_color = correct_color[self.status_color]
                     self.chat_message = ""
 
                     # Loops trough chat strings
-                    for element in json_string['extra']:
+                    for element in json_dict['extra']:
                         self.chat_color = element['color']
                         self.patched_color = correct_color[self.chat_color]
                         self.chat_message = self.chat_message + str(f"[{self.patched_color}]") + element['text'] + "[/]"
@@ -111,7 +111,7 @@ class ChatMessage:
                           f"Chat color: {self.chat_color}\nPatched chat color: {self.patched_chat_color}")
 
             class FriendList:
-                def __init__(self, json_string):
+                def __init__(self, json_dict):
                     self.username = n
                     self.username_color = n
                     self.status = n
@@ -125,7 +125,7 @@ class ChatMessage:
                     # Creates user dict
                     self.user_dict = {}
 
-                    for item in json_string['extra']:
+                    for item in json_dict['extra']:
                         # Filters messages like: Page(1 off 27)
                         if not any(ext in item['text'] for ext in self.matches_flist):
                             # If this returns true a username has been found and will be stored
@@ -167,16 +167,16 @@ class ChatMessage:
                     pass
 
             class WatchdogMessage:
-                def __init__(self, json_string):
+                def __init__(self, json_dict):
                     # Gets message
-                    self.message = json_string['extra'][0]['text']
+                    self.message = json_dict['extra'][0]['text']
 
                     # Gets message color
-                    self.message_color = json_string['extra'][0]['color']
+                    self.message_color = json_dict['extra'][0]['color']
 
                     # Tries to check if bold key exists
                     try:
-                        if json_string['extra'][0]['bold']:
+                        if json_dict['extra'][0]['bold']:
                             self.bold = "bold "
                     except KeyError:
                         self.bold = ""
@@ -195,17 +195,17 @@ class ChatMessage:
                         f"Bold: {self.bold}\nMessage: {self.message}\nMessage Color: {self.message_color}\nPatched color: {self.patched_color}")
 
             class FriendStatus:
-                def __init__(self, json_string):
+                def __init__(self, json_dict):
                     self.username = n
                     self.username_color = n
                     self.patched_color = n
                     self.status = n
 
                     # Gets username
-                    self.username = json_string['extra'][0]['text']
+                    self.username = json_dict['extra'][0]['text']
 
                     # Gets username color and patches it
-                    self.username_color = json_string['extra'][0]['color']
+                    self.username_color = json_dict['extra'][0]['color']
 
                     try:
                         self.patched_color = correct_color[self.username_color]
@@ -213,7 +213,7 @@ class ChatMessage:
                         self.patched_color = "bright_white"
 
                     # Gets status (join/leave)
-                    self.status = json_string['extra'][1]['text']
+                    self.status = json_dict['extra'][1]['text']
 
                 def debugPrint(self):
                     print(
@@ -224,17 +224,17 @@ class ChatMessage:
 
             class MysteryBoxes:
                 # TODO Fixing rating "issue"
-                def __init__(self, json_string):
+                def __init__(self, json_dict):
                     self.username_color = n
                     self.username = n
                     self.rating = n
                     self.patched_color = n
 
                     # Gets username
-                    self.username = json_string['text']
+                    self.username = json_dict['text']
 
                     # Gets username color and patches it
-                    self.username_color = json_string['color']
+                    self.username_color = json_dict['color']
 
                     try:
                         self.patched_color = correct_color[self.username_color]
@@ -242,7 +242,7 @@ class ChatMessage:
                         self.patched_color = "bright_white"
 
                     # Gets rating
-                    self.rating = json_string['extra'][1]['text']
+                    self.rating = json_dict['extra'][1]['text']
 
                 def debugPrint(self):
                     print(
@@ -252,7 +252,6 @@ class ChatMessage:
                     return f"[{correct_color[self.username_color]}]{self.username}[/][bright_yellow]found a {self.rating} [/][turquoise2]Mystery Box[/][bright_white]![/]"
 
             class LobbyJoinMessage:
-                # Todo change json_dict to json_string
                 def __init__(self, json_dict):
 
                     self.name = n
@@ -273,17 +272,17 @@ class ChatMessage:
 
                     # Sets name
                     if self.rank == "MVP++":
-                        self.json_string = json_dict["extra"][1]['text']
+                        self.json_dict = json_dict["extra"][1]['text']
                     else:
-                        self.json_string = json_dict["extra"][0]['text']
+                        self.json_dict = json_dict["extra"][0]['text']
 
-                    for index, item in enumerate(self.json_string):
+                    for index, item in enumerate(self.json_dict):
                         if item == "]":
                             # Regex that stars 2 positions after ] (index+2) and then gets the whole word until a
                             # space appears, .span() gets the indexes
-                            regex_index = re.match("([^\s]+)", self.json_string[index + 2:]).span()
+                            regex_index = re.match("([^\s]+)", self.json_dict[index + 2:]).span()
                             # Pure magic
-                            self.name = self.json_string[index + 2:index + 2 + regex_index[1] - 2]
+                            self.name = self.json_dict[index + 2:index + 2 + regex_index[1] - 2]
 
                     # Sets uuid
                     self.uuid = string["clickEvent"]["value"][13:]

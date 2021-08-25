@@ -25,44 +25,57 @@ def main():
     connection = Connection("play.hypixel.net", 25565, auth_token=auth_token)
 
     def handle_join_game(join_packet):
-        print('[bold green] Connected..')
+        print('[bold green][!] Connected...[/]')
 
     connection.register_packet_listener(handle_join_game, clientbound.play.JoinGamePacket)
 
     def print_chat(chat_packet):
         json_data = json.loads(chat_packet.json_data)
-        # Todo reparing this, it has to do with json elements not being found
+        # Todo implementing friend list detection
         try:
             if json_data['text'].startswith("From ") or json_data['text'].startswith("To ") and json_data['color'] \
                     == "light_purple":
-                print("[bold orange1] I think that was a private message")
-                print(ChatMessage.Hypixel.Global.PrivateMessage(json_string=json_data).formatted())
-            elif json_data['extra'][0]['text'] == " §b>§c>§a>§r " or "§6joined the lobby!" in json_data['extra'][0][
-                'text']:
-                print("[bold orange1][!] I think that was a lobby join message")
-                print(ChatMessage.Hypixel.Global.LobbyJoinMessage(json_dict=json_data).formatted())
-            elif json_data['extra'][2]['text'] == "Mystery Box" or json_data['extra'][3]['text'] == "Mystery Box" and \
-                    json_data['extra'][2]['color'] == "aqua" or json_data['extra'][3]['color'] == "aqua":
-                print("[bold orange1][!] I think that was a mystery box message")
-                print(ChatMessage.Hypixel.Global.MysteryBoxes(json_string=json_data).formatted())
-            elif json_data['text'] == "Friend > " and json_data['color'] == "green":
-                print("[bold orange1][!] I think that was friend join/leave message")
-                print(ChatMessage.Hypixel.Global.FriendStatus(json_string=json_data).formatted())
-            elif "✫" in json_data['extra'][0]['text']:
-                print("[bold orange1][!] I think that was a bedwars chat message")
-                print(ChatMessage.Hypixel.HypixelBedwarsLobby(json_string=json_data).formatted())
-            elif json_data['text'] == "You are AFK. Move around to return from AFK." and json_data['color'] == "red":
-                print("[bold orange1][!] I think that was a limbo message")
-                print(ChatMessage.Hypixel.Global.LimboMessage(json_string=json_data).formatted())
-            else:
-                print(json_data)
-        except IndexError:
+                print(ChatMessage.Hypixel.Global.PrivateMessage(json_dict=json_data).formatted())
+                return
+        except (IndexError, KeyError):
             pass
-        except Exception as e:
-            print('[bold red]----------------ERROR------------------[/]')
-            print(json_data)
-            print(f"[bold red]Element causing the error: [/]{e}")
-            print('[bold red]----------------ERROR------------------[/]')
+
+        try:
+            if json_data['extra'][0]['text'] == " §b>§c>§a>§r " or "§6joined the lobby!" in json_data['extra'][0][
+                'text']:
+                print(ChatMessage.Hypixel.Global.LobbyJoinMessage(json_dict=json_data).formatted())
+                return
+        except (IndexError, KeyError):
+            pass
+
+        try:
+            if json_data['extra'][2]['text'] == "Mystery Box" or json_data['extra'][3]['text'] == "Mystery Box" and \
+                    json_data['extra'][2]['color'] == "aqua" or json_data['extra'][3]['color'] == "aqua":
+                print(ChatMessage.Hypixel.Global.MysteryBoxes(json_dict=json_data).formatted())
+                return
+        except (IndexError, KeyError):
+            pass
+
+        try:
+            if json_data['text'] == "Friend > " and json_data['color'] == "green":
+                print(ChatMessage.Hypixel.Global.FriendStatus(json_dict=json_data).formatted())
+                return
+        except (IndexError, KeyError):
+            pass
+
+        try:
+            if "✫" in json_data['extra'][0]['text']:
+                print(ChatMessage.Hypixel.HypixelBedwarsLobby(json_dict=json_data).formatted())
+                return
+        except (IndexError, KeyError):
+            pass
+
+        try:
+            if json_data['text'] == "You are AFK. Move around to return from AFK." and json_data['color'] == "red":
+                print(ChatMessage.Hypixel.Global.LimboMessage(json_dict=json_data).formatted())
+                return
+        except (IndexError, KeyError):
+            pass
 
     connection.register_packet_listener(print_chat, clientbound.play.ChatMessagePacket)
     connection.connect()
