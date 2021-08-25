@@ -31,7 +31,7 @@ def main():
 
     def print_chat(chat_packet):
         json_data = json.loads(chat_packet.json_data)
-        # Todo implementing friend list detection (parsing has been done)
+        # Todo fixing friend list detection
         try:
             if json_data['text'].startswith("From ") or json_data['text'].startswith("To ") and json_data['color'] \
                     == "light_purple":
@@ -75,6 +75,16 @@ def main():
                 print(ChatMessage.Hypixel.Global.LimboMessage(json_dict=json_data).formatted())
                 return
         except (IndexError, KeyError):
+            pass
+
+        try:
+            if json_data['extra'][3]['text'].startswith(">>") or json_data['extra'][2]['text'].startswith("<<") \
+                    and json_data['extra'][3]['color'] == 'yellow' or json_data['extra'][2]['color'] == 'yellow':
+                print(ChatMessage.Hypixel.Global.FriendList(json_dict=json_data).formatted())
+                return
+        except Exception as e:
+            print(e)
+            print(json_data)
             pass
 
     connection.register_packet_listener(print_chat, clientbound.play.ChatMessagePacket)
