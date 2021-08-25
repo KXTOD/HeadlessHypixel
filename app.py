@@ -31,7 +31,7 @@ def main():
 
     def print_chat(chat_packet):
         json_data = json.loads(chat_packet.json_data)
-        # Todo implementing friend list detection
+        # Todo implementing friend list detection (parsing has been done)
         try:
             if json_data['text'].startswith("From ") or json_data['text'].startswith("To ") and json_data['color'] \
                     == "light_purple":
