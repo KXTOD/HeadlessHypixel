@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 import os
 from ChatMessage import ChatMessage
 
+print_log_on_exit = True
+log = [ChatMessage.LogMsg("Started app.py", color="#008888")]
 
 def main():
     load_dotenv("crd.env")
@@ -32,6 +34,7 @@ def main():
     def print_chat(chat_packet):
         json_data = json.loads(chat_packet.json_data)
         # Todo fixing friend list detection
+
         try:
             if json_data['text'].startswith("From ") or json_data['text'].startswith("To ") and json_data['color'] \
                     == "light_purple":
@@ -98,6 +101,9 @@ def main():
             connection.write_packet(packet)
         except KeyboardInterrupt:
             print("Disconnecting...")
+            if print_log_on_exit:
+                for log_msg in log:
+                    log_msg.printLogMsg()
             sys.exit()
 
 

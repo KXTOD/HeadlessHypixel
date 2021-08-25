@@ -1,6 +1,7 @@
+import datetime
 from rich import print
 import regex as re
-from examples import limbo_message
+
 n = None
 
 # Todo looking for closer color combinations so chat gets matched
@@ -361,3 +362,17 @@ class ChatMessage:
                         return f"[turquoise2]>[/][red]>[/][green3]>[/] [{rank_colors[self.rank]}][MVP[/][{color_format[self.rankColour]}]++[/][{rank_colors[self.rank]}]] {self.name}[/] [orange1]joined the lobby! [/][green3]<[/][red]<[/][turquoise2]<[/]"
                     else:
                         return f"[turquoise2][MVP[/][{color_format[self.rankColour]}]+[/][turquoise2]] {self.name}[/] [orange1]joined the lobby![/]"
+
+    # Other
+    class LogMsg:
+        def __init__(self, msg, other="", color="#FF3333", other_color="white"):
+            self.message = msg
+            self.other = other
+            self.timestamp = datetime.datetime.now().time()
+            self.color = color
+            self.other_color = other_color
+
+        def printLogMsg(self):
+            print(f"{str(self.timestamp)[:8]}: [{self.color}]{self.message}[/]")
+            if self.other:
+                print(f"Additional data: [{self.other_color}]{self.other}[/]")
