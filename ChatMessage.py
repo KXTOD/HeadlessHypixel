@@ -386,8 +386,6 @@ class ChatMessage:
 
     @staticmethod
     def Identify(json_dict):
-        print(examples.bw_chat_message_blanked)
-        print(str(json_dict))
         return re.match(examples.bw_chat_message_blanked, str(json_dict))
 
 
