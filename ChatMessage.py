@@ -2,6 +2,7 @@ import datetime
 from rich import print
 import regex as re
 
+import examples # for testing
 n = None
 
 # Todo looking for closer color combinations so chat gets matched
@@ -382,3 +383,12 @@ class ChatMessage:
                 print(f"{str(self.timestamp)[:8]}: [{self.color}]{self.message}[/]")
                 if self.other:
                     print(f"Additional data: [{self.other_color}]{self.other}[/]")
+
+    @staticmethod
+    def Identify(json_dict):
+        print(examples.bw_chat_message_blanked)
+        print(str(json_dict))
+        return re.match(examples.bw_chat_message_blanked, str(json_dict))
+
+
+print(ChatMessage.Identify(examples.bw_chat_message))
