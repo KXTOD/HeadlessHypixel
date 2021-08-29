@@ -1,6 +1,6 @@
 # Put JSON HERE
 
-bw_chat_message = {
+TEST_bw_chat_message = {
     'text': '',
     'strikethrough': False,
     'extra': [
@@ -19,7 +19,8 @@ bw_chat_message = {
     ]
 }
 
-bw_chat_message_blanked = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§.\[(.+)✫] §.\[(.+)§.(.+)§.] (.+)§.', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§.\[(.+)§.(.+)§.] (.+)§.\\n§.Hypixel Level: §.(.+)\\n§.Achievement Points: §.(.+)\\n§.Guild: §.§.(.+)\\n\\n§.Click to view §.(.+)§.'s profile!., 'strikethrough': False}}}, {'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}]}"
+bw_chat_message_format = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§(.)\[(.+)✫] §(.)\[(.+)§(.)(.+)§(.)] (.+)§(.)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§(.)\[(.+)§(.)(.+)§(.)] (.+)§(.)\\n§(.)Hypixel Level: §(.)(.+)\\n§(.)Achievement Points: §(.)(.+)\\n§(.)Guild: §(.)§(.)(.+)\\n\\n§(.)Click to view §(.)(.+)§.'s profile!., 'strikethrough': False}}}, {'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}]}"
+
 
 friend_status = {'text': 'Friend > ', 'color': 'green',
                  'extra': [{'text': 'JqmmyYT ', 'color': 'green'}, {'text': 'left.', 'color': 'yellow'}]}
