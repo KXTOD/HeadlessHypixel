@@ -38,35 +38,30 @@ class ChatMessage:
             def __init__(self, json_dict):
                 # Initializing properties
                 self.username = n
+                self.uuid = n
+                self.bw_level = n
                 self.message = n
-                self.color_code = n
-                self.patched_color = n
+                self.rank = n
+                self.network_level = n
+                self.ach_pts = n
+                self.guild = n
 
+                match = re.match(examples.bw_chat_message_format, str(json_dict))
                 # Assigning properties
-                self.username = json_dict['extra'][0]['text']
-                self.message = json_dict['extra'][1]['text']
-
-                # TODO Fixing this terrible code
-                for character in self.username:
-                    if character == "§":
-                        try:
-                            self.color_code = self.username[self.username.index(character) + 1]
-                        except ValueError:
-                            continue
-                        self.patched_color = f"[{color_format[self.color_code]}]"
-                        try:
-                            self.username = self.username.replace(
-                                self.username[self.username.index(character):self.username.index(character) + 2],
-                                self.patched_color)
-                        except ValueError:
-                            continue
+                self.username = match.group(8)
+                self.uuid = match.group(10)
+                self.bw_level = match.group(2) # Todo Breaks with multicolor - check TEST3 in examples
+                self.message = match.group(31)
+                self.rank = match.group()
+                self.network_level = match.group()
+                self.ach_pts = match.group()
+                self.guild = match.group()
 
             def formatted(self):
                 return f"{self.username}{self.message}"
 
             def debugPrint(self):
-                print(
-                    f"Username: {self.username}\nMessage: {self.message}\nColor code: {self.color_code}\nPatched color: {self.patched_color}")
+                pass
 
         class Global:
             class LimboMessage():
@@ -386,7 +381,8 @@ class ChatMessage:
 
     @staticmethod
     def Identify(json_dict):
+        print(str(examples.TEST4_bw_chat_message))
         return re.match(examples.bw_chat_message_format, str(json_dict))
 
 
-print(ChatMessage.Identify(examples.TEST_bw_chat_message))
+print(ChatMessage.Identify(examples.TEST4_bw_chat_message))
