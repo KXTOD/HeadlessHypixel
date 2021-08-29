@@ -26,31 +26,18 @@ TEST2_bw_chat_message = {
     'strikethrough': False,
     'extra': [
         {
-            'text': '§f[169✫] §a[VIP§6+§a] SimonsBrother§f',
+            'text': '§7[11✫] §a[VIP] avxro§f',
             'strikethrough': False,
-            'clickEvent': {
-                'action': 'run_command',
-                'value': '/viewprofile b764ea8c-1a4f-4ecd-9a08-ca4a4d9da412'
-            },
+            'clickEvent': {'action': 'run_command', 'value': '/viewprofile b54627ed-5c98-4692-8566-9c713c7fe9c5'},
             'hoverEvent': {
                 'action': 'show_text',
-                'value': {
-                    'text': "§a[VIP§6+§a] SimonsBrother§f\n§7Hypixel Level: §6132\n§7Achievement Points: §e5,730\n§7Guild: §b§bNone\n\n§eClick to view §aSimonsBrother§e's profile!",
-                    'strikethrough': False
-                }
+                'value': {'text': "§a[VIP] avxro§f\n§7Hypixel Level: §631\n§7Achievement Points: §e1,400\n§7Guild: §b§bNone\n\n§eClick to view §aavxro§e's profile!", 'strikethrough': False}
             }
         },
-        {
-            'text': ': test',
-            'bold': False,
-            'italic': False,
-            'underlined': False,
-            'obfuscated': False,
-            'strikethrough': False,
-            'color': 'white'
-        }
+        {'text': ': can i have vip+ plz', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
     ]
 }
+
 
 # Lvl 1k+ test
 TEST3_bw_chat_message = {
@@ -89,7 +76,7 @@ TEST4_bw_chat_message = {
 }
 
 
-bw_chat_message_format = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§(.)\[(.+)(✫)*(✪)*] §(.)(\[(.+)§(.)(.+)§(.)] )*(.+)§(.)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§(.)(\[(.+)§(.)(.+)§(.)] )*(.+)§(.)\\n§(.)Hypixel Level: §(.)(.+)\\n§(.)Achievement Points: §(.)(.+)\\n§(.)Guild:( )*(§(.))*(§(.))*(.+)\\n\\n§(.)Click to view §(.)(.+)§(.)'s profile!., 'strikethrough': False}}},( )*{'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
+bw_chat_message_format = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§(.)\[(.+)(✫)*(✪)*] §(.)(\[(.+)§(.)(.+)§(.)] )*(\[(.+)] )*(.+)§(.)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§(.)(\[(.+)§(.)(.+)§(.)] )*(\[(.+)] )*(.+)§(.)\\n§(.)Hypixel Level: §(.)(.+)\\n§(.)Achievement Points: §(.)(.+)\\n§(.)Guild:( )*(§(.))*(§(.))*(.+)\\n\\n§(.)Click to view §(.)(.+)§(.)'s profile!., 'strikethrough': False}}},( )*{'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
 
 
 friend_status = {'text': 'Friend > ', 'color': 'green',

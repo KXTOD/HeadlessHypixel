@@ -45,17 +45,40 @@ class ChatMessage:
                 self.network_level = n
                 self.ach_pts = n
                 self.guild = n
+                self.bw_lvl_colors = []
+                self.message_color = n
 
                 match = re.match(examples.bw_chat_message_format, str(json_dict))
                 # Assigning properties
-                self.username = match.group(11)
-                self.uuid = match.group(13)
-                self.bw_level = match.group(2) # Todo Breaks with multicolor - check TEST3 in examples
-                self.message = match.group(40)
-                self.rank = match.group(6)
-                self.network_level = match.group(24)
-                self.ach_pts = match.group(27)
-                self.guild = match.group(34)
+                self.username = match.group(13)
+                self.uuid = match.group(15)
+                temp_bw_lvl = match.group(2)
+                self.message = match.group(44)
+                temp_rank = match.group(11) or match.group(7)
+                self.network_level = int(match.group(28))
+                self.ach_pts = int(str(match.group(31)).replace(",", ""))
+                temp_guild = match.group(38)
+                self.message_color = match.group(45)
+
+                # Re-parse bw level
+                if "✫" in temp_bw_lvl:
+                    self.bw_level = int(temp_bw_lvl[:len(temp_bw_lvl)-1])
+                else:
+                    self.bw_lvl_colors = list(map(lambda x: temp_bw_lvl[x], range(1, 17, 3)))
+                    self.bw_level = int("".join(list(map(lambda x: temp_bw_lvl[x], range(2, 12, 3)))))
+
+                # Re-parse rank
+                if temp_rank is None:
+                    self.rank = None
+                else:
+                    if match.group(9) is None:
+                        self.rank = match.group(12)
+                    else:
+                        self.rank = match.group(7) + match.group(9)
+
+                # Re-parse guild
+                self.guild = None if (temp_guild == "None" or temp_guild is None) else temp_guild
+
 
             def formatted(self):
                 # Todo No longer works
@@ -64,7 +87,7 @@ class ChatMessage:
             def debugPrint(self):
                 print(f"Username: {self.username}\nUUID: {self.uuid}\nBW level: {self.bw_level}\n"
                       f"Message: {self.message}\nRank: {self.rank}\nNetwork level: {self.network_level}\n"
-                      f"Achievement points: {self.ach_pts}\nGuild: {self.guild}")
+                      f"Achievement points: {self.ach_pts}\nGuild: {self.guild}\nAdvanced level colors: {self.bw_lvl_colors}")
 
         class Global:
             class LimboMessage():
