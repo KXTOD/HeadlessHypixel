@@ -2,14 +2,15 @@ import datetime
 from rich import print
 import regex as re
 
-import examples # for testing
+import examples  # for testing
+
 n = None
 
 # Todo looking for closer color combinations so chat gets matched
 rank_colors = {"VIP": "green1", "VIP+": "green1",
                "MVP": "turquoise2", "MVP+": "turquoise2",
                "MVP++": "orange1",
-               None: "bright_black", "None": "bright_black", "non": "bright_black"}
+               None: "white", "None": "white", "non": "white"}
 
 color_format = {"4": "dark_red", "c": "red", "6": "orange1", "e": "bright_yellow", "2": "dark_green",
                 "a": "green1", "b": "turquoise2", "3": "sky_blue3", "1": "dark_blue", "9": "blue", "d": "pink",
@@ -47,22 +48,24 @@ class ChatMessage:
                 self.guild = n
                 self.bw_lvl_colors = []
                 self.message_color = n
+                self.plus_color = n
 
-                match = re.match(examples.bw_chat_message_format, str(json_dict))
+                self.match = re.match(examples.bw_chat_message_format, str(json_dict))
                 # Assigning properties
-                self.username = match.group(13)
-                self.uuid = match.group(15)
-                temp_bw_lvl = match.group(2)
-                self.message = match.group(44)
-                temp_rank = match.group(11) or match.group(7)
-                self.network_level = int(match.group(28))
-                self.ach_pts = int(str(match.group(31)).replace(",", ""))
-                temp_guild = match.group(38)
-                self.message_color = match.group(45)
+                self.username = self.match.group(13)
+                self.uuid = self.match.group(15)
+                temp_bw_lvl = self.match.group(2)
+                self.message = self.match.group(44)
+                temp_rank = self.match.group(11) or self.match.group(7)
+                self.network_level = int(self.match.group(28))
+                self.ach_pts = int(str(self.match.group(31)).replace(",", ""))
+                temp_guild = self.match.group(38)
+                self.message_color = self.match.group(45)
+                self.plus_color = str(self.match.group(8))
 
                 # Re-parse bw level
                 if "✫" in temp_bw_lvl:
-                    self.bw_level = int(temp_bw_lvl[:len(temp_bw_lvl)-1])
+                    self.bw_level = int(temp_bw_lvl[:len(temp_bw_lvl) - 1])
                 else:
                     self.bw_lvl_colors = list(map(lambda x: temp_bw_lvl[x], range(1, 17, 3)))
                     self.bw_level = int("".join(list(map(lambda x: temp_bw_lvl[x], range(2, 12, 3)))))
@@ -71,23 +74,44 @@ class ChatMessage:
                 if temp_rank is None:
                     self.rank = None
                 else:
-                    if match.group(9) is None:
-                        self.rank = match.group(12)
+                    if self.match.group(9) is None:
+                        self.rank = self.match.group(12)
                     else:
-                        self.rank = match.group(7) + match.group(9)
+                        self.rank = self.match.group(7) + self.match.group(9)
 
                 # Re-parse guild
                 self.guild = None if (temp_guild == "None" or temp_guild is None) else temp_guild
 
-
             def formatted(self):
-                # Todo No longer works
-                return f"{self.username}{self.message}"
+                pluses = "" if self.match.group(9) is None else self.match.group(9)
+                rank_first_part = "" if self.rank is None else f"[{self.rank[:3]}"
+                rank_second_part = "" if self.rank is None else "] "
+                bwlvl = str(self.bw_level)
+                if len(self.bw_lvl_colors) == 0:
+                    return f"[{color_format[self.match.group(1)]}][{self.bw_level}✫][/] " \
+                           f"[{rank_colors[self.rank]}]{rank_first_part}[/]" \
+                           f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
+                           f"{self.username}[/]" \
+                           f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
+                else:
+                    return f"[{color_format[self.match.group(1)]}][[/]" \
+                           f"[{color_format[self.bw_lvl_colors[0]]}]{bwlvl[0]}[/]" \
+                           f"[{color_format[self.bw_lvl_colors[1]]}]{bwlvl[1]}[/]" \
+                           f"[{color_format[self.bw_lvl_colors[2]]}]{bwlvl[2]}[/]" \
+                           f"[{color_format[self.bw_lvl_colors[3]]}]{bwlvl[3]}[/]" \
+                           f"[{color_format[self.bw_lvl_colors[4]]}]{self.match.group(2)[14]}[/]" \
+                           f"[{color_format[self.bw_lvl_colors[5]]}]][/]" \
+                           f" [{rank_colors[self.rank]}]{rank_first_part}[/]" \
+                           f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
+                           f"{self.username}[/]" \
+                           f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
 
             def debugPrint(self):
                 print(f"Username: {self.username}\nUUID: {self.uuid}\nBW level: {self.bw_level}\n"
                       f"Message: {self.message}\nRank: {self.rank}\nNetwork level: {self.network_level}\n"
-                      f"Achievement points: {self.ach_pts}\nGuild: {self.guild}\nAdvanced level colors: {self.bw_lvl_colors}")
+                      f"Achievement points: {self.ach_pts}\nGuild: {self.guild}\n"
+                      f"Advanced level colors: {self.bw_lvl_colors}\nMessage color: {self.message_color}\n"
+                      f"Plus color: {self.plus_color}")
 
         class Global:
             class LimboMessage():
@@ -404,4 +428,3 @@ class ChatMessage:
                 print(f"{str(self.timestamp)[:8]}: [{self.color}]{self.message}[/]")
                 if self.other:
                     print(f"Additional data: [{self.other_color}]{self.other}[/]")
-
