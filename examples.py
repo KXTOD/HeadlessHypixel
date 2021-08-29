@@ -89,7 +89,7 @@ TEST4_bw_chat_message = {
 }
 
 
-bw_chat_message_format = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§(.)\[(.+)✫] §(.)(\[(.+)§(.)(.+)§(.)] )*(.+)§(.)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§(.)(\[(.+)§(.)(.+)§(.)] )*(.+)§(.)\\n§(.)Hypixel Level: §(.)(.+)\\n§(.)Achievement Points: §(.)(.+)\\n§(.)Guild:( )*(§(.))*(§(.))*(.+)\\n\\n§(.)Click to view §(.)(.+)§(.)'s profile!., 'strikethrough': False}}}, {'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
+bw_chat_message_format = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§(.)\[(.+)(✫)*(✪)*] §(.)(\[(.+)§(.)(.+)§(.)] )*(.+)§(.)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§(.)(\[(.+)§(.)(.+)§(.)] )*(.+)§(.)\\n§(.)Hypixel Level: §(.)(.+)\\n§(.)Achievement Points: §(.)(.+)\\n§(.)Guild:( )*(§(.))*(§(.))*(.+)\\n\\n§(.)Click to view §(.)(.+)§(.)'s profile!., 'strikethrough': False}}},( )*{'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
 
 
 friend_status = {'text': 'Friend > ', 'color': 'green',

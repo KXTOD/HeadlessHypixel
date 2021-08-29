@@ -48,20 +48,23 @@ class ChatMessage:
 
                 match = re.match(examples.bw_chat_message_format, str(json_dict))
                 # Assigning properties
-                self.username = match.group(8)
-                self.uuid = match.group(10)
+                self.username = match.group(11)
+                self.uuid = match.group(13)
                 self.bw_level = match.group(2) # Todo Breaks with multicolor - check TEST3 in examples
-                self.message = match.group(31)
-                self.rank = match.group()
-                self.network_level = match.group()
-                self.ach_pts = match.group()
-                self.guild = match.group()
+                self.message = match.group(40)
+                self.rank = match.group(6)
+                self.network_level = match.group(24)
+                self.ach_pts = match.group(27)
+                self.guild = match.group(34)
 
             def formatted(self):
+                # Todo No longer works
                 return f"{self.username}{self.message}"
 
             def debugPrint(self):
-                pass
+                print(f"Username: {self.username}\nUUID: {self.uuid}\nBW level: {self.bw_level}\n"
+                      f"Message: {self.message}\nRank: {self.rank}\nNetwork level: {self.network_level}\n"
+                      f"Achievement points: {self.ach_pts}\nGuild: {self.guild}")
 
         class Global:
             class LimboMessage():
@@ -379,10 +382,3 @@ class ChatMessage:
                 if self.other:
                     print(f"Additional data: [{self.other_color}]{self.other}[/]")
 
-    @staticmethod
-    def Identify(json_dict):
-        print(str(examples.TEST4_bw_chat_message))
-        return re.match(examples.bw_chat_message_format, str(json_dict))
-
-
-print(ChatMessage.Identify(examples.TEST4_bw_chat_message))
