@@ -26,15 +26,15 @@ TEST2_bw_chat_message = {
     'strikethrough': False,
     'extra': [
         {
-            'text': '§7[11✫] §a[VIP] avxro§f',
+            'text': '§7[§f1§f1§f2§f1§7✪§7] §6[MVP§0++§6] dqzzle§f',
             'strikethrough': False,
-            'clickEvent': {'action': 'run_command', 'value': '/viewprofile b54627ed-5c98-4692-8566-9c713c7fe9c5'},
+            'clickEvent': {'action': 'run_command', 'value': '/viewprofile 4f37f199-eb34-4dae-8e72-be5307c7640c'},
             'hoverEvent': {
                 'action': 'show_text',
-                'value': {'text': "§a[VIP] avxro§f\n§7Hypixel Level: §631\n§7Achievement Points: §e1,400\n§7Guild: §b§bNone\n\n§eClick to view §aavxro§e's profile!", 'strikethrough': False}
+                'value': {'text': "§6[MVP§0++§6] dqzzle§f\n§7Hypixel Level: §6306\n§7Achievement Points: §e11,155\n§7Guild: §bLucid\n\n§eClick to view §6dqzzle§e's profile!", 'strikethrough': False}
             }
         },
-        {'text': ': can i have vip+ plz', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
+        {'text': ': nice', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
     ]
 }
 
@@ -50,10 +50,13 @@ TEST3_bw_chat_message = {
             'clickEvent': {'action': 'run_command', 'value': '/viewprofile ae0fda0d-7bb3-4532-841c-903190d7fc65'},
             'hoverEvent': {
                 'action': 'show_text',
-                'value': {'text': "§6[MVP§0++§6] Dolida§f\n§7Hypixel Level: §6601\n§7Achievement Points: §e13,260\n§7Guild: §bEnigmata\n\n§eClick to view §6Dolida§e's profile!", 'strikethrough': False}
+                'value': {
+                    'text': "§6[MVP§0++§6] Dolida§f\n§7Hypixel Level: §6601\n§7Achievement Points: §e13,260\n§7Guild: §bEnigmata\n\n§eClick to view §6Dolida§e's profile!",
+                    'strikethrough': False}
             }
         },
-        {'text': ': 1/3', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
+        {'text': ': 1/3', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+         'strikethrough': False, 'color': 'white'}
     ]
 }
 
@@ -68,17 +71,18 @@ TEST4_bw_chat_message = {
             'clickEvent': {'action': 'run_command', 'value': '/viewprofile 472dd2ac-411a-4871-8b28-180356acb7f1'},
             'hoverEvent': {
                 'action': 'show_text',
-                'value': {'text': "§7Qiurker§7\n§7Hypixel Level: §631\n§7Achievement Points: §e1,780\n§7Guild: §bLively Kids TW\n\n§eClick to view §7Qiurker§e's profile!", 'strikethrough': False}
+                'value': {
+                    'text': "§7Qiurker§7\n§7Hypixel Level: §631\n§7Achievement Points: §e1,780\n§7Guild: §bLively Kids TW\n\n§eClick to view §7Qiurker§e's profile!",
+                    'strikethrough': False}
             }
         },
-        {'text': ': home came give me vip please', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
+        {'text': ': home came give me vip please', 'bold': False, 'italic': False, 'underlined': False,
+         'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
     ]
 }
 
-
 bw_chat_message_format = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§(.)\[(.+)(✫)*(✪)*] §(.)(\[(.+)§(.)(.+)§(.)] )*(\[(.+)] )*(.+)§(.)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§(.)(\[(.+)§(.)(.+)§(.)] )*(\[(.+)] )*(.+)§(.)\\n§(.)Hypixel Level: §(.)(.+)\\n§(.)Achievement Points: §(.)(.+)\\n§(.)Guild:( )*(§(.))*(§(.))*(.+)\\n\\n§(.)Click to view §(.)(.+)§(.)'s profile!., 'strikethrough': False}}},( )*{'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
-
-
+v2 = "{'text': '','strikethrough': False,'extra': \[{'text': '§(.)\[(.+)] §.(\[(...)§(.)(.+)§.] )?(.+)§.','strikethrough': False,'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'},'hoverEvent': {'action': 'show_text', ?'value': {'text': .§.(\[(...)§(.)(.+)§.] )?(.+)§.\\n§7Hypixel Level: §6(.+)\\n§7Achievement Points: §e(.+)\\n§7Guild:(.+)\\n\\n§eClick to view §.(.+)§.'s profile!., ?'strikethrough': False}}},{'text': ': (.+)',.?'bold': False, 'italic': False, 'underlined': False, ?'obfuscated': False, ?'strikethrough': False, ?'color': '(.+)'}]}"
 friend_status = {'text': 'Friend > ', 'color': 'green',
                  'extra': [{'text': 'JqmmyYT ', 'color': 'green'}, {'text': 'left.', 'color': 'yellow'}]}
 
@@ -107,7 +111,6 @@ watchdog_json = [
      'text': ''}
 ]
 
-
 chat_message = {
     'text': '',
     'strikethrough': False,
@@ -118,10 +121,15 @@ chat_message = {
             'clickEvent': {'action': 'run_command', 'value': '/viewprofile 5beb3dff-b44d-49af-8ad0-f35aecac9eb7'},
             'hoverEvent': {
                 'action': 'show_text',
-                'value': {'text': "§7jenscc2006§7\n§7Hypixel Level: §61\n§7Achievement Points: §e35\n§7Guild: §b§bNone\n\n§eClick to view §7jenscc2006§e's profile!", 'strikethrough': False}
+                'value': {
+                    'text': "§7jenscc2006§7\n§7Hypixel Level: §61\n§7Achievement Points: §e35\n§7Guild: §b§bNone\n\n§eClick to view §7jenscc2006§e's profile!",
+                    'strikethrough': False}
             }
         },
-        {'text': 'This is where the chat message is. Its not what jenscc2006 actually said. They made an emote and it was hard to see. Is this illegal?', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
+        {
+            'text': 'This is where the chat message is. Its not what jenscc2006 actually said. They made an emote and it was hard to see. Is this illegal?',
+            'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False,
+            'color': 'gray'}
     ]
 }
 
@@ -140,9 +148,12 @@ important_mystery_box_opened = {
             'strikethrough': False,
             'color': 'gray',
             'extra': [
-                {'text': 'Mystery Boxes ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'aqua'},
-                {'text': 'by\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'},
-                {'text': 'playing games on the server!', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
+                {'text': 'Mystery Boxes ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                 'strikethrough': False, 'color': 'aqua'},
+                {'text': 'by\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+                 'strikethrough': False, 'color': 'gray'},
+                {'text': 'playing games on the server!', 'bold': False, 'italic': False, 'underlined': False,
+                 'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
             ]
         }
     },
@@ -162,7 +173,8 @@ important_mystery_box_opened = {
                     'strikethrough': False,
                     'color': 'gray',
                     'extra': [
-                        {'text': 'Suit Pieces\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'yellow'},
+                        {'text': 'Suit Pieces\n', 'bold': False, 'italic': False, 'underlined': False,
+                         'obfuscated': False, 'strikethrough': False, 'color': 'yellow'},
                         {'text': 'Rarity: ', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
                          'strikethrough': False, 'color': 'gray'},
                         {'text': 'Legendary', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
@@ -328,5 +340,25 @@ friend_list = {
         {'text': '\n', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
          'strikethrough': False},
         {'text': '-----------------------------------------------------', 'color': 'blue', 'strikethrough': False}
+    ]
+}
+
+bw_lobby_message_ytber = {
+    'text': '',
+    'strikethrough': False,
+    'extra': [
+        {
+            'text': '§f[166✫] §c[§fYOUTUBE§c] YuseiFudo§f',
+            'strikethrough': False,
+            'clickEvent': {'action': 'run_command', 'value': '/viewprofile 5ee5063b-c67f-4bf5-b8a9-fdb0c803bccb'},
+            'hoverEvent': {
+                'action': 'show_text',
+                'value': {
+                    'text': "§c[§fYOUTUBE§c] YuseiFudo§f\n§7Hypixel Level: §6210\n§7Achievement Points: §e5,810\n§7Guild: §bThe Fake Friends Of Canadia\n\n§eClick to view §cYuseiFudo§e's profile!",
+                    'strikethrough': False
+                }
+            }
+        },
+        {'text': ': wagwan', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
     ]
 }

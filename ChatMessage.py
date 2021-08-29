@@ -35,9 +35,10 @@ class ChatMessage:
             def __init__(self):
                 pass
 
-        class HypixelBedwarsLobby:
+        class OldHypixelBedwarsLobby:
             def __init__(self, json_dict):
                 # Initializing properties
+                self.valid = False
                 self.username = n
                 self.uuid = n
                 self.bw_level = n
@@ -51,67 +52,158 @@ class ChatMessage:
                 self.plus_color = n
 
                 self.match = re.match(examples.bw_chat_message_format, str(json_dict))
-                # Assigning properties
-                self.username = self.match.group(13)
-                self.uuid = self.match.group(15)
-                temp_bw_lvl = self.match.group(2)
-                self.message = self.match.group(44)
-                temp_rank = self.match.group(11) or self.match.group(7)
-                self.network_level = int(self.match.group(28))
-                self.ach_pts = int(str(self.match.group(31)).replace(",", ""))
-                temp_guild = self.match.group(38)
-                self.message_color = self.match.group(45)
-                self.plus_color = str(self.match.group(8))
+                if self.match is not None:
+                    # Assigning properties
+                    self.valid = True
+                    self.username = self.match.group(13)
+                    self.uuid = self.match.group(15)
+                    temp_bw_lvl = self.match.group(2)
+                    self.message = self.match.group(44)
+                    temp_rank = self.match.group(11) or self.match.group(7)
+                    self.network_level = int(self.match.group(28))
+                    self.ach_pts = int(str(self.match.group(31)).replace(",", ""))
+                    temp_guild = self.match.group(38)
+                    self.message_color = self.match.group(45)
+                    self.plus_color = str(self.match.group(8))
 
-                # Re-parse bw level
-                if "✫" in temp_bw_lvl:
-                    self.bw_level = int(temp_bw_lvl[:len(temp_bw_lvl) - 1])
-                else:
-                    self.bw_lvl_colors = list(map(lambda x: temp_bw_lvl[x], range(1, 17, 3)))
-                    self.bw_level = int("".join(list(map(lambda x: temp_bw_lvl[x], range(2, 12, 3)))))
-
-                # Re-parse rank
-                if temp_rank is None:
-                    self.rank = None
-                else:
-                    if self.match.group(9) is None:
-                        self.rank = self.match.group(12)
+                    # Re-parse bw level
+                    if len(str(temp_bw_lvl)) <= 5:
+                        self.bw_level = int(temp_bw_lvl[:len(temp_bw_lvl) - 1])
                     else:
-                        self.rank = self.match.group(7) + self.match.group(9)
+                        self.bw_lvl_colors = list(map(lambda x: temp_bw_lvl[x], range(1, 17, 3)))
+                        self.bw_level = int("".join(list(map(lambda x: temp_bw_lvl[x], range(2, 12, 3)))))
 
-                # Re-parse guild
-                self.guild = None if (temp_guild == "None" or temp_guild is None) else temp_guild
+                    # Re-parse rank
+                    if temp_rank is None:
+                        self.rank = None
+                    else:
+                        if self.match.group(9) is None:
+                            self.rank = self.match.group(12)
+                        else:
+                            self.rank = self.match.group(7) + self.match.group(9)
+
+                    # Re-parse guild
+                    self.guild = None if (temp_guild == "None" or temp_guild is None) else temp_guild
 
             def formatted(self):
-                pluses = "" if self.match.group(9) is None else self.match.group(9)
-                rank_first_part = "" if self.rank is None else f"[{self.rank[:3]}"
-                rank_second_part = "" if self.rank is None else "] "
-                bwlvl = str(self.bw_level)
-                if len(self.bw_lvl_colors) == 0:
-                    return f"[{color_format[self.match.group(1)]}][{self.bw_level}✫][/] " \
-                           f"[{rank_colors[self.rank]}]{rank_first_part}[/]" \
-                           f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
-                           f"{self.username}[/]" \
-                           f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
-                else:
-                    return f"[{color_format[self.match.group(1)]}][[/]" \
-                           f"[{color_format[self.bw_lvl_colors[0]]}]{bwlvl[0]}[/]" \
-                           f"[{color_format[self.bw_lvl_colors[1]]}]{bwlvl[1]}[/]" \
-                           f"[{color_format[self.bw_lvl_colors[2]]}]{bwlvl[2]}[/]" \
-                           f"[{color_format[self.bw_lvl_colors[3]]}]{bwlvl[3]}[/]" \
-                           f"[{color_format[self.bw_lvl_colors[4]]}]{self.match.group(2)[14]}[/]" \
-                           f"[{color_format[self.bw_lvl_colors[5]]}]][/]" \
-                           f" [{rank_colors[self.rank]}]{rank_first_part}[/]" \
-                           f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
-                           f"{self.username}[/]" \
-                           f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
+                if self.valid:
+                    pluses = "" if self.match.group(9) is None else self.match.group(9)
+                    rank_first_part = "" if self.rank is None else f"[{self.rank[:3]}"
+                    rank_second_part = "" if self.rank is None else "] "
+                    bwlvl = str(self.bw_level)
+                    if len(self.bw_lvl_colors) == 0:
+                        return f"[{color_format[self.match.group(1)]}][{self.bw_level}✫][/] " \
+                               f"[{rank_colors[self.rank]}]{rank_first_part}[/]" \
+                               f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
+                               f"{self.username}[/]" \
+                               f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
+                    else:
+                        return f"[{color_format[self.match.group(1)]}][[/]" \
+                               f"[{color_format[self.bw_lvl_colors[0]]}]{bwlvl[0]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[1]]}]{bwlvl[1]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[2]]}]{bwlvl[2]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[3]]}]{bwlvl[3]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[4]]}]{self.match.group(2)[14]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[5]]}]][/]" \
+                               f" [{rank_colors[self.rank]}]{rank_first_part}[/]" \
+                               f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
+                               f"{self.username}[/]" \
+                               f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
 
             def debugPrint(self):
-                print(f"Username: {self.username}\nUUID: {self.uuid}\nBW level: {self.bw_level}\n"
-                      f"Message: {self.message}\nRank: {self.rank}\nNetwork level: {self.network_level}\n"
-                      f"Achievement points: {self.ach_pts}\nGuild: {self.guild}\n"
-                      f"Advanced level colors: {self.bw_lvl_colors}\nMessage color: {self.message_color}\n"
-                      f"Plus color: {self.plus_color}")
+                if self.valid:
+                    print(f"Username: {self.username}\nUUID: {self.uuid}\nBW level: {self.bw_level}\n"
+                          f"Message: {self.message}\nRank: {self.rank}\nNetwork level: {self.network_level}\n"
+                          f"Achievement points: {self.ach_pts}\nGuild: {self.guild}\n"
+                          f"Advanced level colors: {self.bw_lvl_colors}\nMessage color: {self.message_color}\n"
+                          f"Plus color: {self.plus_color}")
+                else:
+                    print(f"Invalid {type(self)}")
+
+        class HypixelBedwarsLobby:
+            def __init__(self, json_dict):
+                # Initializing properties
+                self.valid = False
+                self.username = n
+                self.uuid = n
+                self.bw_level = n
+                self.message = n
+                self.rank = n
+                self.network_level = n
+                self.ach_pts = n
+                self.guild = n
+                self.bw_lvl_colors = []
+                self.message_color = n
+                self.plus_color = n
+
+                self.match = re.match(examples.bw_chat_message_format, str(json_dict))
+                if self.match is not None:
+                    # Assigning properties
+                    self.valid = True
+                    self.username = self.match.group(13)
+                    self.uuid = self.match.group(15)
+                    temp_bw_lvl = self.match.group(2)
+                    self.message = self.match.group(44)
+                    temp_rank = self.match.group(11) or self.match.group(7)
+                    self.network_level = int(self.match.group(28))
+                    self.ach_pts = int(str(self.match.group(31)).replace(",", ""))
+                    temp_guild = self.match.group(38)
+                    self.message_color = self.match.group(45)
+                    self.plus_color = str(self.match.group(8))
+
+                    # Re-parse bw level
+                    if len(str(temp_bw_lvl)) <= 5:
+                        self.bw_level = int(temp_bw_lvl[:len(temp_bw_lvl) - 1])
+                    else:
+                        self.bw_lvl_colors = list(map(lambda x: temp_bw_lvl[x], range(1, 17, 3)))
+                        self.bw_level = int("".join(list(map(lambda x: temp_bw_lvl[x], range(2, 12, 3)))))
+
+                    # Re-parse rank
+                    if temp_rank is None:
+                        self.rank = None
+                    else:
+                        if self.match.group(9) is None:
+                            self.rank = self.match.group(12)
+                        else:
+                            self.rank = self.match.group(7) + self.match.group(9)
+
+                    # Re-parse guild
+                    self.guild = None if (temp_guild == "None" or temp_guild is None) else temp_guild
+
+            def formatted(self):
+                if self.valid:
+                    pluses = "" if self.match.group(9) is None else self.match.group(9)
+                    rank_first_part = "" if self.rank is None else f"[{self.rank[:3]}"
+                    rank_second_part = "" if self.rank is None else "] "
+                    bwlvl = str(self.bw_level)
+                    if len(self.bw_lvl_colors) == 0:
+                        return f"[{color_format[self.match.group(1)]}][{self.bw_level}✫][/] " \
+                               f"[{rank_colors[self.rank]}]{rank_first_part}[/]" \
+                               f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
+                               f"{self.username}[/]" \
+                               f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
+                    else:
+                        return f"[{color_format[self.match.group(1)]}][[/]" \
+                               f"[{color_format[self.bw_lvl_colors[0]]}]{bwlvl[0]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[1]]}]{bwlvl[1]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[2]]}]{bwlvl[2]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[3]]}]{bwlvl[3]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[4]]}]{self.match.group(2)[14]}[/]" \
+                               f"[{color_format[self.bw_lvl_colors[5]]}]][/]" \
+                               f" [{rank_colors[self.rank]}]{rank_first_part}[/]" \
+                               f"[{'orange1' if self.rank == 'VIP+' or self.plus_color is not None else color_format[self.plus_color]}]{pluses}[/][{rank_colors[self.rank]}]{rank_second_part}" \
+                               f"{self.username}[/]" \
+                               f"[{'bright_white' if self.rank is not None else 'white'}]: {self.message}[/]"
+
+            def debugPrint(self):
+                if self.valid:
+                    print(f"Username: {self.username}\nUUID: {self.uuid}\nBW level: {self.bw_level}\n"
+                          f"Message: {self.message}\nRank: {self.rank}\nNetwork level: {self.network_level}\n"
+                          f"Achievement points: {self.ach_pts}\nGuild: {self.guild}\n"
+                          f"Advanced level colors: {self.bw_lvl_colors}\nMessage color: {self.message_color}\n"
+                          f"Plus color: {self.plus_color}")
+                else:
+                    print(f"Invalid {type(self)}")
 
         class Global:
             class LimboMessage():
@@ -428,3 +520,8 @@ class ChatMessage:
                 print(f"{str(self.timestamp)[:8]}: [{self.color}]{self.message}[/]")
                 if self.other:
                     print(f"Additional data: [{self.other_color}]{self.other}[/]")
+
+
+msg = ChatMessage.Hypixel.HypixelBedwarsLobby(examples.TEST2_bw_chat_message)
+msg.debugPrint()
+#print(msg.formatted())
