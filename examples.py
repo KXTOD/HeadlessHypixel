@@ -20,7 +20,7 @@ BW_LOBBY_MESSAGE_TESTS = [{
             'color': 'white'}
     ]
 },
-    # Generic
+    # Lvl 1k+ test
     {
         'text': '',
         'strikethrough': False,

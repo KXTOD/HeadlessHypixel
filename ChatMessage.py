@@ -49,11 +49,28 @@ class ChatMessage:
 
                 # Ensures that the message is suitable
                 identifying_regex = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '(.+)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': \"(.+)\", 'strikethrough': False}}}, {'text': ': (.*)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
+                # Identifies parts of the first group (the star, rank, name etc)
+                pre_msg_regex = r"§.\[(.+)] §(.)(. +)§."
+                # Identifies parts of the third group (guild, nw level, ach pts)
+                player_data_regex = r"§.(\[(.+)§.(.*)§.] )?(.+)§.\\n§7Hypixel Level: §6(.+)\\n§7Achievement Points: §.(.+)\\n§7Guild: ?§b(.+)\\n\\n§eClick to view §.(.+)§.'s profile!"
 
                 self.match = re.match(identifying_regex, str(json_dict))
+                self.pre_msg_data = re.match(pre_msg_regex, self.match.group(1))
+                self.player_data = re.match(player_data_regex, self.match.group(3))
                 if self.match is not None:
                     # Assigning properties
-                   self.valid = True
+                    self.valid = True
+                    self.username = self.player_data.group(4)
+                    self.uuid = self.match.group(2)
+                    self.bw_level = self.pre_msg_data.group(1) # needs work
+                    self.message = self.match.group(4)
+                    self.rank = n # needs work
+                    self.network_level = self.player_data.group(5)
+                    self.ach_pts = int(str(self.player_data.group(6)).replace(",", ""))
+                    self.guild = None if self.player_data.group(7) == "§bNone" else self.player_data.group(7)
+                    self.bw_lvl_colors = [] # needs work might not need
+                    self.message_color = self.match.group(5)
+                    self.plus_color = n # needs work
 
             def formatted(self):
                 if self.valid:
@@ -414,7 +431,6 @@ class ChatMessage:
                 print(f"{str(self.timestamp)[:8]}: [{self.color}]{self.message}[/]")
                 if self.other:
                     print(f"Additional data: [{self.other_color}]{self.other}[/]")
-
 
 
 ChatMessage.Hypixel.HypixelBedwarsLobby.runTestCases()
