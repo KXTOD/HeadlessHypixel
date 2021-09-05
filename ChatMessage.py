@@ -50,9 +50,11 @@ class ChatMessage:
                 # Ensures that the message is suitable
                 identifying_regex = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '(.+)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': \"(.+)\", 'strikethrough': False}}}, {'text': ': (.*)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
                 # Identifies parts of the first group (the star, rank, name etc)
-                pre_msg_regex = r"§.\[(.+)] §(.)(. +)§."
+                pre_msg_regex = r"§.\[(.+)] §(.)(.+)§."
                 # Identifies parts of the third group (guild, nw level, ach pts)
                 player_data_regex = r"§.(\[(.+)§.(.*)§.] )?(.+)§.\\n§7Hypixel Level: §6(.+)\\n§7Achievement Points: §.(.+)\\n§7Guild: ?§b(.+)\\n\\n§eClick to view §.(.+)§.'s profile!"
+                # Gets info from pre_msg_regex
+                rank_data_regex = r"\[(.+)§(.)(.*)§.]"#doesnt work :(
 
                 self.match = re.match(identifying_regex, str(json_dict))
                 self.pre_msg_data = re.match(pre_msg_regex, self.match.group(1))
@@ -60,7 +62,7 @@ class ChatMessage:
                 if self.match is not None:
                     # Assigning properties
                     self.valid = True
-                    self.username = self.player_data.group(4)
+                    self.username = self.player_data.group(8)
                     self.uuid = self.match.group(2)
                     self.bw_level = self.pre_msg_data.group(1) # needs work
                     self.message = self.match.group(4)

@@ -79,6 +79,25 @@ BW_LOBBY_MESSAGE_TESTS = [{
             {'text': ': home came give me vip please', 'bold': False, 'italic': False, 'underlined': False,
              'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
         ]
+    },
+    {
+        'text': '',
+        'strikethrough': False,
+        'extra': [
+            {
+                'text': '§7[1✫] §a[VIP] EulersFormula§f',
+                'strikethrough': False,
+                'clickEvent': {'action': 'run_command', 'value': '/viewprofile 1102b8d7-5f05-4679-b833-476535a36a2e'},
+                'hoverEvent': {
+                    'action': 'show_text',
+                    'value': {
+                        'text': "§a[VIP] EulersFormula§f\n§7Hypixel Level: §613\n§7Achievement Points: §e1,045\n§7Guild: §b§bNone\n\n§eClick to view §aEulersFormula§e's profile!",
+                        'strikethrough': False}
+                }
+            },
+            {'text': ': technoblade and dream are playing mega skywars!!!!!!! join !!!', 'bold': False, 'italic': False,
+             'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
+        ]
     }]
 
 
