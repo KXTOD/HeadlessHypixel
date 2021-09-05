@@ -1,7 +1,8 @@
 # Put JSON HERE
 
+# Bw chat message test cases
 # Generic
-TEST_bw_chat_message = {
+BW_LOBBY_MESSAGE_TESTS = [{
     'text': '',
     'strikethrough': False,
     'extra': [
@@ -18,71 +19,69 @@ TEST_bw_chat_message = {
             'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False,
             'color': 'white'}
     ]
-}
+},
+    # Generic
+    {
+        'text': '',
+        'strikethrough': False,
+        'extra': [
+            {
+                'text': '§7[§f1§f1§f2§f1§7✪§7] §6[MVP§0++§6] dqzzle§f',
+                'strikethrough': False,
+                'clickEvent': {'action': 'run_command', 'value': '/viewprofile 4f37f199-eb34-4dae-8e72-be5307c7640c'},
+                'hoverEvent': {
+                    'action': 'show_text',
+                    'value': {
+                        'text': "§6[MVP§0++§6] dqzzle§f\n§7Hypixel Level: §6306\n§7Achievement Points: §e11,155\n§7Guild: §bLucid\n\n§eClick to view §6dqzzle§e's profile!",
+                        'strikethrough': False}
+                }
+            },
+            {'text': ': nice', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+             'strikethrough': False, 'color': 'white'}
+        ]
+    },
+    # Lvl 1k+ test
+    {
+        'text': '',
+        'strikethrough': False,
+        'extra': [
+            {
+                'text': '§7[§91§98§94§95§1✪§7] §6[MVP§0++§6] Dolida§f',
+                'strikethrough': False,
+                'clickEvent': {'action': 'run_command', 'value': '/viewprofile ae0fda0d-7bb3-4532-841c-903190d7fc65'},
+                'hoverEvent': {
+                    'action': 'show_text',
+                    'value': {
+                        'text': "§6[MVP§0++§6] Dolida§f\n§7Hypixel Level: §6601\n§7Achievement Points: §e13,260\n§7Guild: §bEnigmata\n\n§eClick to view §6Dolida§e's profile!",
+                        'strikethrough': False}
+                }
+            },
+            {'text': ': 1/3', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+             'strikethrough': False, 'color': 'white'}
+        ]
+    },
+    # Non test
+    {
+        'text': '',
+        'strikethrough': False,
+        'extra': [
+            {
+                'text': '§7[33✫] §7Qiurker§7',
+                'strikethrough': False,
+                'clickEvent': {'action': 'run_command', 'value': '/viewprofile 472dd2ac-411a-4871-8b28-180356acb7f1'},
+                'hoverEvent': {
+                    'action': 'show_text',
+                    'value': {
+                        'text': "§7Qiurker§7\n§7Hypixel Level: §631\n§7Achievement Points: §e1,780\n§7Guild: §bLively Kids TW\n\n§eClick to view §7Qiurker§e's profile!",
+                        'strikethrough': False}
+                }
+            },
+            {'text': ': home came give me vip please', 'bold': False, 'italic': False, 'underlined': False,
+             'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
+        ]
+    }]
 
-# Generic
-TEST2_bw_chat_message = {
-    'text': '',
-    'strikethrough': False,
-    'extra': [
-        {
-            'text': '§7[§f1§f1§f2§f1§7✪§7] §6[MVP§0++§6] dqzzle§f',
-            'strikethrough': False,
-            'clickEvent': {'action': 'run_command', 'value': '/viewprofile 4f37f199-eb34-4dae-8e72-be5307c7640c'},
-            'hoverEvent': {
-                'action': 'show_text',
-                'value': {'text': "§6[MVP§0++§6] dqzzle§f\n§7Hypixel Level: §6306\n§7Achievement Points: §e11,155\n§7Guild: §bLucid\n\n§eClick to view §6dqzzle§e's profile!", 'strikethrough': False}
-            }
-        },
-        {'text': ': nice', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
-    ]
-}
 
-
-# Lvl 1k+ test
-TEST3_bw_chat_message = {
-    'text': '',
-    'strikethrough': False,
-    'extra': [
-        {
-            'text': '§7[§91§98§94§95§1✪§7] §6[MVP§0++§6] Dolida§f',
-            'strikethrough': False,
-            'clickEvent': {'action': 'run_command', 'value': '/viewprofile ae0fda0d-7bb3-4532-841c-903190d7fc65'},
-            'hoverEvent': {
-                'action': 'show_text',
-                'value': {
-                    'text': "§6[MVP§0++§6] Dolida§f\n§7Hypixel Level: §6601\n§7Achievement Points: §e13,260\n§7Guild: §bEnigmata\n\n§eClick to view §6Dolida§e's profile!",
-                    'strikethrough': False}
-            }
-        },
-        {'text': ': 1/3', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
-         'strikethrough': False, 'color': 'white'}
-    ]
-}
-
-# Non test
-TEST4_bw_chat_message = {
-    'text': '',
-    'strikethrough': False,
-    'extra': [
-        {
-            'text': '§7[33✫] §7Qiurker§7',
-            'strikethrough': False,
-            'clickEvent': {'action': 'run_command', 'value': '/viewprofile 472dd2ac-411a-4871-8b28-180356acb7f1'},
-            'hoverEvent': {
-                'action': 'show_text',
-                'value': {
-                    'text': "§7Qiurker§7\n§7Hypixel Level: §631\n§7Achievement Points: §e1,780\n§7Guild: §bLively Kids TW\n\n§eClick to view §7Qiurker§e's profile!",
-                    'strikethrough': False}
-            }
-        },
-        {'text': ': home came give me vip please', 'bold': False, 'italic': False, 'underlined': False,
-         'obfuscated': False, 'strikethrough': False, 'color': 'gray'}
-    ]
-}
-
-bw_chat_message_format = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '§(.)\[(.+)(✫)*(✪)*] §(.)(\[(.+)§(.)(.+)§(.)] )*(\[(.+)] )*(.+)§(.)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': .§(.)(\[(.+)§(.)(.+)§(.)] )*(\[(.+)] )*(.+)§(.)\\n§(.)Hypixel Level: §(.)(.+)\\n§(.)Achievement Points: §(.)(.+)\\n§(.)Guild:( )*(§(.))*(§(.))*(.+)\\n\\n§(.)Click to view §(.)(.+)§(.)'s profile!., 'strikethrough': False}}},( )*{'text': ': (.+)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
-v2 = "{'text': '','strikethrough': False, ?'extra': \[{'text': '§(.)\[(.+)] §.(\[(...)§(.)(.+)§.] )?(.+)§.','strikethrough': False,'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'},'hoverEvent': {'action': 'show_text', ?'value': {'text': .§.(\[(...)§(.)(.+)§.] )?(.+)§.\\n§7Hypixel Level: §6(.+)\\n§7Achievement Points: §e(.+)\\n§7Guild:(.+)\\n\\n§eClick to view §.(.+)§.'s profile!., ?'strikethrough': False}}},{'text': ': (.+)',.?'bold': False, 'italic': False, 'underlined': False, ?'obfuscated': False, ?'strikethrough': False, ?'color': '(.+)'}]}"
 friend_status = {'text': 'Friend > ', 'color': 'green',
                  'extra': [{'text': 'JqmmyYT ', 'color': 'green'}, {'text': 'left.', 'color': 'yellow'}]}
 
@@ -359,6 +358,7 @@ bw_lobby_message_ytber = {
                 }
             }
         },
-        {'text': ': wagwan', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': 'white'}
+        {'text': ': wagwan', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False,
+         'strikethrough': False, 'color': 'white'}
     ]
 }
