@@ -139,6 +139,7 @@ class ChatMessage:
                 for index, case in enumerate(cases):
                     try:
                         print(f"Case {index}: {ChatMessage.Hypixel.HypixelBedwarsLobby(case).valid}")
+                        print(ChatMessage.Hypixel.HypixelBedwarsLobby(case).debugPrint())
                     except Exception as e:
                         print(f"Error at case {index}: {e}")
 
