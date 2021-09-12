@@ -1,10 +1,3 @@
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
--->
-
 
 
 <!-- PROJECT SHIELDS -->
@@ -32,17 +25,18 @@
 
 <h3 align="center">HeadlessHypixel</h3>
 
-  <p align="center">
-    An in development headless hypixel client
-    <br />
-    <br />
-    ·
-    <a href="https://github.com/JXRIS/Testing/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/JXRIS/Testing/issues">Request Feature</a>
-    ·
+<b><p align="center" style="color:darkred">
+NOTE: Since migration has started this project has been discontinued. Some features might eventually roll out but until
+we have found a solution for logging in with microsoft accounts almost no feature will be implemented.
+<br/>
+<br/>
+·
+<a href="https://github.com/JXRIS/Testing/issues">Report Bug</a>
+·
+<a href="https://github.com/JXRIS/Testing/issues">Request Feature</a>
+·
   </p>
-</p>
+
 
 
 
@@ -76,7 +70,7 @@
 
 ## About The Project
 
-This project is still in the alpha version, it attemps to be a headless hypixel client
+This project is still in the alpha version, it attemps to be a headless hypixel client.
 
 ### Built With
 
