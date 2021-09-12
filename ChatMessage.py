@@ -49,10 +49,34 @@ class ChatMessage:
 
                 # Ensures that the message is suitable
                 identifying_regex = r"{'text': '', 'strikethrough': False, 'extra': \[{'text': '(.+)', 'strikethrough': False, 'clickEvent': {'action': 'run_command', 'value': '\/viewprofile (.+)'}, 'hoverEvent': {'action': 'show_text', 'value': {'text': \"(.+)\", 'strikethrough': False}}}, {'text': ': (.*)', 'bold': False, 'italic': False, 'underlined': False, 'obfuscated': False, 'strikethrough': False, 'color': '(.+)'}]}"
+                """ Groups
+                Group 1: Pre-message info (name, star, rank)
+                Group 2: uuid
+                Group 3: Hover data (level, guild, ach pts, name, rank, more)
+                Group 4: Message
+                Group 5: Message color
+                """
                 # Identifies parts of the first group (the star, rank, name etc)
                 pre_msg_regex = r"§.\[(.+)] §(.)(.+)§."
+                """ Groups
+                1: Star
+                2: Rank color
+                3: Rank and name
+                """
                 # Identifies parts of the third group (guild, nw level, ach pts)
                 player_data_regex = r"§.(\[(.+)§.(.*)§.] )?(.+)§.\\n§7Hypixel Level: §6(.+)\\n§7Achievement Points: §.(.+)\\n§7Guild: ?§b(.+)\\n\\n§eClick to view §.(.+)§.'s profile!"
+                """ Groups
+                *=does not apply to nons or non-pluses
+                1: Full rank*
+                2: Rank*
+                3: Pluses*
+                4: Non-plus rank
+                5: Name
+                6: Network level
+                7: Ach pts
+                8: Guild
+                9: Name
+                """
                 # Gets info from pre_msg_regex
                 rank_data_regex = r"\[(.+)§(.)(.*)§.]"#doesnt work :(
 
