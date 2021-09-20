@@ -31,9 +31,9 @@ we have found a solution for logging in with microsoft accounts almost no featur
 <br/>
 <br/>
 ·
-<a href="https://github.com/JXRIS/Testing/issues">Report Bug</a>
+<a href="https://github.com/JXRIS/HeadlessHypixel/issues">Report Bug</a>
 ·
-<a href="https://github.com/JXRIS/Testing/issues">Request Feature</a>
+<a href="https://github.com/JXRIS/HeadlessHypixel/issues">Request Feature</a>
 ·
   </p>
 
@@ -88,7 +88,7 @@ variables. These variables are <b>USR</b> <i>(username)</i> and <b>PSS</b> <i>(p
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/https://github.com/JXRIS/Testing.git
+   git clone https://github.com/https://github.com/JXRIS/HeadlessHypixel.git
    ```
 2. Install the necessary packages
 
@@ -137,17 +137,17 @@ You can contact us at discord via:
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/JXRIS/Testing.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/JXRIS/HeadlessHypixel.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/JXRIS/Testing/graphs/contributors
+[contributors-url]: https://github.com/JXRIS/HeadlessHypixel/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/JXRIS/Testing.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/JXRIS/HeadlessHypixel.svg?style=for-the-badge
 
-[forks-url]: https://github.com/JXRIS/Testing/network/members
+[forks-url]: https://github.com/JXRIS/HeadlessHypixel/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/JXRIS/Testing.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/JXRIS/HeadlessHypixel.svg?style=for-the-badge
 
-[stars-url]: https://github.com/JXRIS/Testing/stargazers
+[stars-url]: https://github.com/JXRIS/HeadlessHypixel/stargazers
 
 
 
